@@ -1,19 +1,12 @@
 import type { Metadata } from 'next'
-import { Archivo, Space_Grotesk } from 'next/font/google'
+import { Cormorant_Garamond } from 'next/font/google'
 import '@/styles/globals.css'
 
-const archivo = Archivo({
+const cormorant = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700', '900'],
+  weight: ['300', '400', '500'],
   style: ['normal', 'italic'],
-  variable: '--font-archivo',
-  display: 'swap',
-})
-
-const spaceGrotesk = Space_Grotesk({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600', '700'],
-  variable: '--font-space-grotesk',
+  variable: '--font-cormorant',
   display: 'swap',
 })
 
@@ -41,7 +34,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${archivo.variable} ${spaceGrotesk.variable}`}>
+    <html lang="en" className={cormorant.variable}>
       <body>{children}</body>
     </html>
   )

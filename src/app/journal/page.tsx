@@ -52,7 +52,7 @@ export default function JournalPage() {
                 <span style={{ display: 'inline-block', width: '28px', height: '0.5px', background: 'var(--ink)', opacity: 0.3 }} />
                 <span style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '10px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.45 }}>Writing</span>
               </div>
-              <h1 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 1.0, letterSpacing: '-0.04em' }}>
+              <h1 style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 1.0 }}>
                 Journal
               </h1>
             </motion.div>
@@ -84,8 +84,8 @@ export default function JournalPage() {
                 <span style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '13px', opacity: 0.4 }}>{post.date}</span>
               </div>
               <div>
-                <h2 style={{ fontFamily: 'var(--font-heading)', fontWeight: 600, fontSize: '22px', color: 'var(--ink)', marginBottom: '10px', lineHeight: 1.2 }}>{post.title}</h2>
-                <p style={{ fontFamily: 'var(--font-body)', fontWeight: 400, fontSize: '15px', lineHeight: 1.65, opacity: 0.55 }}>{post.excerpt}</p>
+                <h2 style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '22px', color: 'var(--ink)', marginBottom: '10px', lineHeight: 1.2 }}>{post.title}</h2>
+                <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '15px', lineHeight: 1.65, opacity: 0.55 }}>{post.excerpt}</p>
               </div>
               <span style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '11px', letterSpacing: '0.12em', opacity: 0.3, textAlign: 'right' }}>{post.readTime}</span>
             </motion.article>

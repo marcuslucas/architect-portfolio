@@ -1,13 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  /* Design System Fonts */
-  --font-heading: var(--font-archivo), 'Archivo', sans-serif;
-  --font-body: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
-  /* Legacy alias — keeps any remaining var(--font-cormorant) refs on Archivo */
-  --font-cormorant: var(--font-heading);
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
 
   /* Design System Colors */
   --color-primary: #18181B;
@@ -39,9 +37,9 @@ html {
 }
 
 body {
-  background-color: var(--color-background);
-  color: var(--color-text);
-  font-family: var(--font-body);
+  background-color: var(--warm);
+  color: var(--ink);
+  font-family: var(--font-cormorant);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -66,14 +64,14 @@ body {
 
 /* ─── Typography Base ─── */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-heading);
-  font-weight: 700;
+  font-family: var(--font-cormorant);
+  font-weight: 300;
   line-height: 1.05;
 }
 
 p {
-  font-family: var(--font-body);
-  font-weight: 400;
+  font-family: var(--font-cormorant);
+  font-weight: 300;
   line-height: 1.7;
 }
 
@@ -84,8 +82,8 @@ a {
 
 /* ─── Utility Classes ─── */
 .eyebrow {
-  font-family: var(--font-body);
-  font-weight: 500;
+  font-family: var(--font-cormorant);
+  font-weight: 300;
   font-size: 10px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -97,8 +95,8 @@ a {
   display: flex;
   align-items: center;
   gap: 20px;
-  font-family: var(--font-body);
-  font-weight: 500;
+  font-family: var(--font-cormorant);
+  font-weight: 300;
   font-size: 10px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -162,51 +160,51 @@ a {
 /* ─── Button Styles ─── */
 .btn-primary {
   display: inline-block;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.02em;
-  color: #ffffff;
-  background: #2563EB;
-  padding: 12px 24px;
+  font-family: var(--font-cormorant);
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--warm);
+  background: #1a1916;
+  padding: 15px 36px;
   border-radius: 8px;
   border: none;
   cursor: pointer;
-  transition: all 200ms ease;
+  transition: opacity 0.3s ease;
 }
 
 .btn-primary:hover {
-  opacity: 0.9;
-  transform: translateY(-1px);
+  opacity: 0.8;
 }
 
 .btn-outline {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--font-body);
-  font-weight: 600;
-  font-size: 14px;
-  letter-spacing: 0.02em;
-  color: #18181B;
+  font-family: var(--font-cormorant);
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
   background: transparent;
-  border: 2px solid #18181B;
-  padding: 10px 22px;
-  border-radius: 8px;
+  border: none;
+  border-radius: 0;
   cursor: pointer;
-  transition: all 200ms ease;
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
 }
 
 .btn-outline:hover {
-  background: #18181B;
-  color: #ffffff;
+  opacity: 1;
 }
 
 .btn-outline .arrow-line {
   display: inline-block;
   width: 32px;
   height: 0.5px;
-  background: currentColor;
+  background: var(--ink);
   transition: width 0.4s ease;
 }
 

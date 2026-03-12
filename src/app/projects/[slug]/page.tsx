@@ -59,7 +59,7 @@ export default function ProjectDetailPage({
             <span style={{ display: 'block', fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '10px', letterSpacing: '0.26em', textTransform: 'uppercase', opacity: 0.6, marginBottom: '12px' }}>
               {project.number} — {project.type}
             </span>
-            <h1 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: 'clamp(36px, 6vw, 72px)', lineHeight: 1.0, letterSpacing: '-0.03em' }}>
+            <h1 style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: 'clamp(36px, 6vw, 72px)', lineHeight: 1.0 }}>
               {project.title}
               {project.subtitle && <><br /><em>{project.subtitle}</em></>}
             </h1>
@@ -72,12 +72,12 @@ export default function ProjectDetailPage({
         {/* Project intro */}
         <section style={{ padding: '80px 48px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', borderBottom: '0.5px solid rgba(26,25,22,0.08)' }}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
-            <p style={{ fontFamily: 'var(--font-body)', fontWeight: 400, fontSize: '22px', lineHeight: 1.6, color: 'var(--ink)' }}>
+            <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '22px', lineHeight: 1.6, color: 'var(--ink)' }}>
               {project.description}
             </p>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.35 }}>
-            <p style={{ fontFamily: 'var(--font-body)', fontWeight: 400, fontSize: '16px', lineHeight: 1.75, color: 'var(--ink)', opacity: 0.6, marginBottom: '40px' }}>
+            <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '16px', lineHeight: 1.75, color: 'var(--ink)', opacity: 0.6, marginBottom: '40px' }}>
               {project.longDescription}
             </p>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px 32px', paddingTop: '32px', borderTop: '0.5px solid rgba(26,25,22,0.1)' }}>
@@ -132,7 +132,7 @@ export default function ProjectDetailPage({
               }}
             >
               <div>
-                <div style={{ fontFamily: 'var(--font-heading)', fontWeight: 700, fontSize: 'clamp(24px, 4vw, 48px)', lineHeight: 1.05, letterSpacing: '-0.02em' }}>
+                <div style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: 'clamp(24px, 4vw, 48px)', lineHeight: 1.05 }}>
                   {nextProject.title}{nextProject.subtitle && <><br /><em>{nextProject.subtitle}</em></>}
                 </div>
                 <span style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '13px', letterSpacing: '0.1em', opacity: 0.4 }}>

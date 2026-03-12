@@ -47,13 +47,13 @@ export default function PhilosophyBand() {
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
           style={{
-            fontFamily: 'var(--font-heading)',
-            fontWeight: 700,
+            fontFamily: 'var(--font-cormorant)',
+            fontWeight: 300,
             fontStyle: 'italic',
             fontSize: 'clamp(24px, 3vw, 44px)',
             lineHeight: 1.3,
             color: 'var(--vellum)',
-            letterSpacing: '-0.02em',
+            letterSpacing: '-0.01em',
             borderLeft: 'none',
             margin: 0,
             padding: 0,
@@ -71,8 +71,8 @@ export default function PhilosophyBand() {
         >
           <p
             style={{
-              fontFamily: 'var(--font-body)',
-              fontWeight: 400,
+              fontFamily: 'var(--font-cormorant)',
+              fontWeight: 300,
               fontSize: '16px',
               lineHeight: 1.75,
               color: 'var(--vellum)',
@@ -86,8 +86,8 @@ export default function PhilosophyBand() {
           </p>
           <p
             style={{
-              fontFamily: 'var(--font-body)',
-              fontWeight: 400,
+              fontFamily: 'var(--font-cormorant)',
+              fontWeight: 300,
               fontSize: '16px',
               lineHeight: 1.75,
               color: 'var(--vellum)',

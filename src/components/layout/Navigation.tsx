@@ -63,10 +63,10 @@ export default function Navigation() {
         <Link
           href="/"
           style={{
-            fontFamily: 'var(--font-heading)',
-            fontWeight: 700,
+            fontFamily: 'var(--font-cormorant)',
+            fontWeight: 300,
             fontSize: '14px',
-            letterSpacing: '0.12em',
+            letterSpacing: '0.22em',
             textTransform: 'uppercase',
             color: 'var(--ink)',
             textDecoration: 'none',

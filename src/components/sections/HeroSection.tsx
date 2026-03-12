@@ -99,7 +99,7 @@ export default function HeroSection() {
           pointerEvents: 'none',
         }}
       >
-        {['Grid Ref. 001 — 024', 'VOSS ARCHITECTURE', 'Est. MMXI'].map(
+        {['Grid Ref. 001 — 024', 'BRADY ARCHITECTURE', 'Est. MMXI'].map(
           (text, i) => (
             <span
               key={i}
@@ -162,11 +162,11 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           style={{
-            fontFamily: 'var(--font-cormorant)',
-            fontWeight: 300,
+            fontFamily: 'var(--font-heading)',
+            fontWeight: 900,
             fontSize: 'clamp(52px, 7vw, 96px)',
             lineHeight: 1.0,
-            letterSpacing: '-0.01em',
+            letterSpacing: '-0.05em',
             color: 'var(--ink)',
             marginBottom: '28px',
           }}
@@ -181,8 +181,8 @@ export default function HeroSection() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
           style={{
-            fontFamily: 'var(--font-cormorant)',
-            fontWeight: 300,
+            fontFamily: 'var(--font-body)',
+            fontWeight: 400,
             fontSize: '17px',
             lineHeight: 1.65,
             color: 'var(--ink)',

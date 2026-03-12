@@ -32,10 +32,11 @@ export default function NotFound() {
         </span>
         <h1
           style={{
-            fontFamily: 'var(--font-cormorant)',
-            fontWeight: 300,
+            fontFamily: 'var(--font-heading)',
+            fontWeight: 900,
             fontStyle: 'italic',
             fontSize: 'clamp(32px, 5vw, 60px)',
+            letterSpacing: '-0.03em',
             marginBottom: '28px',
           }}
         >

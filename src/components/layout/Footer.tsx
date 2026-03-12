@@ -40,7 +40,7 @@ export default function Footer() {
               marginBottom: '12px',
             }}
           >
-            Alejandro Voss
+            Dustin Brady
           </div>
           <p
             style={{
@@ -132,7 +132,7 @@ export default function Footer() {
             Miami, Florida 33132<br />
             <br />
             <a
-              href="mailto:studio@vossarchitecture.com"
+              href="mailto:studio@bradyarchitecture.com"
               style={{
                 color: 'inherit',
                 textDecoration: 'none',
@@ -140,7 +140,7 @@ export default function Footer() {
                 paddingBottom: '1px',
               }}
             >
-              studio@vossarchitecture.com
+              studio@bradyarchitecture.com
             </a>
             <br />
             <a
@@ -175,7 +175,7 @@ export default function Footer() {
             opacity: 0.3,
           }}
         >
-          © {new Date().getFullYear()} Voss Architecture. All rights reserved.
+          © {new Date().getFullYear()} Brady Architecture. All rights reserved.
         </span>
         <span
           style={{

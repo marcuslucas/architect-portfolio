@@ -120,8 +120,8 @@ export default function ProcessSection() {
 
             <h3
               style={{
-                fontFamily: 'var(--font-cormorant)',
-                fontWeight: 300,
+                fontFamily: 'var(--font-heading)',
+                fontWeight: 600,
                 fontSize: '22px',
                 color: 'var(--ink)',
                 marginBottom: '14px',
@@ -133,8 +133,8 @@ export default function ProcessSection() {
 
             <p
               style={{
-                fontFamily: 'var(--font-cormorant)',
-                fontWeight: 300,
+                fontFamily: 'var(--font-body)',
+                fontWeight: 400,
                 fontSize: '14px',
                 lineHeight: 1.75,
                 color: 'var(--ink)',

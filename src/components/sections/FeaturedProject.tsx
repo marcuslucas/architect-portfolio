@@ -100,8 +100,8 @@ export default function FeaturedProject() {
 
             <h2
               style={{
-                fontFamily: 'var(--font-cormorant)',
-                fontWeight: 300,
+                fontFamily: 'var(--font-heading)',
+                fontWeight: 700,
                 fontSize: 'clamp(28px, 3vw, 40px)',
                 lineHeight: 1.05,
                 color: 'var(--ink)',
@@ -134,8 +134,8 @@ export default function FeaturedProject() {
 
             <p
               style={{
-                fontFamily: 'var(--font-cormorant)',
-                fontWeight: 300,
+                fontFamily: 'var(--font-body)',
+                fontWeight: 400,
                 fontSize: '16px',
                 lineHeight: 1.7,
                 color: 'var(--ink)',

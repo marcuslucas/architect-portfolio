@@ -10,11 +10,11 @@ const inputStyle = {
   width: '100%',
   background: 'transparent',
   border: 'none',
-  borderBottom: '0.5px solid rgba(26,25,22,0.2)',
+  borderBottom: '1px solid rgba(26,25,22,0.2)',
   padding: '12px 0',
-  fontFamily: 'var(--font-cormorant)',
-  fontWeight: 300,
-  fontSize: '17px',
+  fontFamily: 'var(--font-body)',
+  fontWeight: 400,
+  fontSize: '16px',
   color: 'var(--ink)',
   outline: 'none',
   transition: 'border-color 0.3s',
@@ -22,8 +22,8 @@ const inputStyle = {
 
 const labelStyle = {
   display: 'block',
-  fontFamily: 'var(--font-cormorant)',
-  fontWeight: 300,
+  fontFamily: 'var(--font-body)',
+  fontWeight: 500,
   fontSize: '10px',
   letterSpacing: '0.22em',
   textTransform: 'uppercase' as const,
@@ -55,7 +55,7 @@ export default function ContactPage() {
                 <span style={{ display: 'inline-block', width: '28px', height: '0.5px', background: 'var(--ink)', opacity: 0.3 }} />
                 <span style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '10px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.45 }}>Get in Touch</span>
               </div>
-              <h1 style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 1.0 }}>
+              <h1 style={{ fontFamily: 'var(--font-heading)', fontWeight: 900, fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 1.0, letterSpacing: '-0.04em' }}>
                 Enquire About<br /><em>Your Project</em>
               </h1>
             </motion.div>
@@ -66,21 +66,21 @@ export default function ContactPage() {
         <section style={{ padding: '40px 48px 120px', display: 'grid', gridTemplateColumns: '1fr 1.2fr', gap: '80px', alignItems: 'start' }}>
           {/* Info column */}
           <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.3 }}>
-            <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '18px', lineHeight: 1.7, opacity: 0.65, marginBottom: '56px', maxWidth: '360px' }}>
+            <p style={{ fontFamily: 'var(--font-body)', fontWeight: 400, fontSize: '18px', lineHeight: 1.7, opacity: 0.65, marginBottom: '56px', maxWidth: '360px' }}>
               We work with a limited number of clients each year. If you have a project in mind, we'd like to hear about it.
             </p>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
               {[
                 { label: 'Studio', lines: ['262 NE 2nd Street', 'Miami, Florida 33132'] },
-                { label: 'Email', lines: ['studio@vossarchitecture.com'] },
+                { label: 'Email', lines: ['studio@bradyarchitecture.com'] },
                 { label: 'Phone', lines: ['+1 (305) 555 0190'] },
                 { label: 'Hours', lines: ['Monday – Friday', '9:00 — 18:00 EST'] },
               ].map(({ label, lines }) => (
                 <div key={label}>
                   <span style={labelStyle}>{label}</span>
                   {lines.map((line, i) => (
-                    <span key={i} style={{ display: 'block', fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '16px', opacity: 0.65, lineHeight: 1.6 }}>{line}</span>
+                    <span key={i} style={{ display: 'block', fontFamily: 'var(--font-body)', fontWeight: 400, fontSize: '16px', opacity: 0.65, lineHeight: 1.6 }}>{line}</span>
                   ))}
                 </div>
               ))}
@@ -91,10 +91,10 @@ export default function ContactPage() {
           <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.8, delay: 0.4 }}>
             {submitted ? (
               <div style={{ padding: '64px 0' }}>
-                <span style={{ display: 'block', fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontStyle: 'italic', fontSize: '28px', opacity: 0.7 }}>
+                <span style={{ display: 'block', fontFamily: 'var(--font-heading)', fontWeight: 700, fontStyle: 'italic', fontSize: '28px', opacity: 0.7 }}>
                   Thank you for reaching out.
                 </span>
-                <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '16px', opacity: 0.5, marginTop: '16px', lineHeight: 1.7 }}>
+                <p style={{ fontFamily: 'var(--font-body)', fontWeight: 400, fontSize: '16px', opacity: 0.5, marginTop: '16px', lineHeight: 1.7 }}>
                   We'll be in touch within two business days.
                 </p>
               </div>

@@ -1,19 +1,26 @@
 import type { Metadata } from 'next'
-import { Cormorant_Garamond } from 'next/font/google'
+import { Archivo, Space_Grotesk } from 'next/font/google'
 import '@/styles/globals.css'
 
-const cormorant = Cormorant_Garamond({
+const archivo = Archivo({
   subsets: ['latin'],
-  weight: ['300', '400', '500'],
+  weight: ['300', '400', '500', '600', '700', '900'],
   style: ['normal', 'italic'],
-  variable: '--font-cormorant',
+  variable: '--font-archivo',
+  display: 'swap',
+})
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  variable: '--font-space-grotesk',
   display: 'swap',
 })
 
 export const metadata: Metadata = {
-  title: 'Voss Architecture — Contemporary Design, Florida',
+  title: 'Brady Architecture — Contemporary Design, Florida',
   description:
-    'Alejandro Voss designs singular residences, luxury condominiums, and architectural developments in Florida where structure, light, and landscape converge.',
+    'Dustin Brady designs singular residences, luxury condominiums, and architectural developments in Florida where structure, light, and landscape converge.',
   keywords: [
     'architect Florida',
     'luxury residential architecture',
@@ -22,7 +29,7 @@ export const metadata: Metadata = {
     'high-end design',
   ],
   openGraph: {
-    title: 'Voss Architecture',
+    title: 'Brady Architecture',
     description: 'Space as intention. Contemporary architecture in Florida.',
     type: 'website',
   },
@@ -34,7 +41,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={cormorant.variable}>
+    <html lang="en" className={`${archivo.variable} ${spaceGrotesk.variable}`}>
       <body>{children}</body>
     </html>
   )

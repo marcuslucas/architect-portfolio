@@ -63,16 +63,16 @@ export default function Navigation() {
         <Link
           href="/"
           style={{
-            fontFamily: 'var(--font-cormorant)',
-            fontWeight: 300,
+            fontFamily: 'var(--font-heading)',
+            fontWeight: 700,
             fontSize: '14px',
-            letterSpacing: '0.22em',
+            letterSpacing: '0.12em',
             textTransform: 'uppercase',
             color: 'var(--ink)',
             textDecoration: 'none',
           }}
         >
-          Alejandro Voss
+          Dustin Brady
         </Link>
 
         {/* Desktop Nav */}

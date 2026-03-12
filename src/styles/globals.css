@@ -1,18 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
-  --ink: #1a1916;
+  /* Design System Fonts */
+  --font-heading: var(--font-archivo), 'Archivo', sans-serif;
+  --font-body: var(--font-space-grotesk), 'Space Grotesk', sans-serif;
+  /* Legacy alias — keeps any remaining var(--font-cormorant) refs on Archivo */
+  --font-cormorant: var(--font-heading);
+
+  /* Design System Colors */
+  --color-primary: #18181B;
+  --color-secondary: #3F3F46;
+  --color-cta: #2563EB;
+  --color-background: #FAFAFA;
+  --color-text: #09090B;
+
+  /* Site Palette (mapped to DS) */
+  --ink: #18181B;
   --vellum: #f4f1ea;
   --stone: #c8c4b8;
   --dust: #e8e4dc;
-  --pale: #f9f7f3;
-  --warm: #faf8f4;
-  --accent: #c8a882;
+  --pale: #FAFAFA;
+  --warm: #FAFAFA;
+  --accent: #2563EB;
   --grid-pink: rgba(210, 160, 140, 0.18);
   --grid-blue: rgba(140, 165, 210, 0.12);
 }
@@ -28,9 +39,9 @@ html {
 }
 
 body {
-  background-color: var(--warm);
-  color: var(--ink);
-  font-family: var(--font-cormorant);
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-body);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -55,14 +66,14 @@ body {
 
 /* ─── Typography Base ─── */
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--font-cormorant);
-  font-weight: 300;
+  font-family: var(--font-heading);
+  font-weight: 700;
   line-height: 1.05;
 }
 
 p {
-  font-family: var(--font-cormorant);
-  font-weight: 300;
+  font-family: var(--font-body);
+  font-weight: 400;
   line-height: 1.7;
 }
 
@@ -73,8 +84,8 @@ a {
 
 /* ─── Utility Classes ─── */
 .eyebrow {
-  font-family: var(--font-cormorant);
-  font-weight: 300;
+  font-family: var(--font-body);
+  font-weight: 500;
   font-size: 10px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -86,8 +97,8 @@ a {
   display: flex;
   align-items: center;
   gap: 20px;
-  font-family: var(--font-cormorant);
-  font-weight: 300;
+  font-family: var(--font-body);
+  font-weight: 500;
   font-size: 10px;
   letter-spacing: 0.28em;
   text-transform: uppercase;
@@ -151,49 +162,51 @@ a {
 /* ─── Button Styles ─── */
 .btn-primary {
   display: inline-block;
-  font-family: var(--font-cormorant);
-  font-weight: 300;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--warm);
-  background: var(--ink);
-  padding: 15px 36px;
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #ffffff;
+  background: #2563EB;
+  padding: 12px 24px;
+  border-radius: 8px;
   border: none;
   cursor: pointer;
-  transition: opacity 0.3s ease;
+  transition: all 200ms ease;
 }
 
 .btn-primary:hover {
-  opacity: 0.8;
+  opacity: 0.9;
+  transform: translateY(-1px);
 }
 
 .btn-outline {
   display: inline-flex;
   align-items: center;
   gap: 12px;
-  font-family: var(--font-cormorant);
-  font-weight: 300;
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--ink);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  color: #18181B;
   background: transparent;
-  border: none;
+  border: 2px solid #18181B;
+  padding: 10px 22px;
+  border-radius: 8px;
   cursor: pointer;
-  opacity: 0.55;
-  transition: opacity 0.3s ease;
+  transition: all 200ms ease;
 }
 
 .btn-outline:hover {
-  opacity: 1;
+  background: #18181B;
+  color: #ffffff;
 }
 
 .btn-outline .arrow-line {
   display: inline-block;
   width: 32px;
   height: 0.5px;
-  background: var(--ink);
+  background: currentColor;
   transition: width 0.4s ease;
 }
 

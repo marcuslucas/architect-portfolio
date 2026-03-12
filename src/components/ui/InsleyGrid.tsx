@@ -30,56 +30,56 @@ export default function InsleyGrid({
       <line
         x1="0" y1="440" x2="1400" y2="440"
         stroke={strokeColor}
-        strokeWidth="0.5"
-        opacity="0.08"
+        strokeWidth="1"
+        opacity="0.22"
       />
 
       {/* Base orthogonal grid — ONECITY labyrinthine structure */}
-      <g opacity="0.04">
+      <g opacity="0.13">
         {[80, 160, 240, 320, 400, 480, 560, 640, 720, 800, 880, 960, 1040, 1120, 1200, 1280, 1360].map((x) => (
-          <line key={`v${x}`} x1={x} y1="0" x2={x} y2="800" stroke={strokeColor} strokeWidth="0.5" />
+          <line key={`v${x}`} x1={x} y1="0" x2={x} y2="800" stroke={strokeColor} strokeWidth="0.8" />
         ))}
         {[80, 160, 240, 320, 400, 480, 560, 640, 720].map((y) => (
-          <line key={`h${y}`} x1="0" y1={y} x2="1400" y2={y} stroke={strokeColor} strokeWidth="0.5" />
+          <line key={`h${y}`} x1="0" y1={y} x2="1400" y2={y} stroke={strokeColor} strokeWidth="0.8" />
         ))}
       </g>
 
       {/* Fine sub-grid — Insley's obsessive micro detail */}
       {variant === 'hero' && (
-        <g transform="translate(640, 240)" opacity="0.05">
+        <g transform="translate(640, 240)" opacity="0.14">
           {[0, 20, 40, 60, 80, 100, 120, 140].map((y) => (
-            <line key={`fy${y}`} x1="0" y1={y} x2="320" y2={y} stroke={strokeColor} strokeWidth="0.3" />
+            <line key={`fy${y}`} x1="0" y1={y} x2="320" y2={y} stroke={strokeColor} strokeWidth="0.5" />
           ))}
           {[0, 40, 80, 120, 160, 200, 240, 280, 320].map((x) => (
-            <line key={`fx${x}`} x1={x} y1="0" x2={x} y2="140" stroke={strokeColor} strokeWidth="0.3" />
+            <line key={`fx${x}`} x1={x} y1="0" x2={x} y2="140" stroke={strokeColor} strokeWidth="0.5" />
           ))}
         </g>
       )}
 
       {/* Diamond form — ONECITY center, from Building No. 33 isometric */}
-      <g transform="translate(80, 80)" opacity="0.06">
+      <g transform="translate(80, 80)" opacity="0.18">
         {[0, 40, 80, 120, 160].map((offset, i) => (
           <polygon
             key={`d${i}`}
             points={`200,${offset} ${400 - offset},200 200,${400 - offset} ${offset},200`}
             fill="none"
             stroke={strokeColor}
-            strokeWidth={i === 0 ? '0.5' : '0.3'}
+            strokeWidth={i === 0 ? '0.8' : '0.5'}
           />
         ))}
-        <line x1="200" y1="0" x2="200" y2="400" stroke={strokeColor} strokeWidth="0.3" />
-        <line x1="0" y1="200" x2="400" y2="200" stroke={strokeColor} strokeWidth="0.3" />
+        <line x1="200" y1="0" x2="200" y2="400" stroke={strokeColor} strokeWidth="0.5" />
+        <line x1="0" y1="200" x2="400" y2="200" stroke={strokeColor} strokeWidth="0.5" />
       </g>
 
       {/* Isometric passage-space fan — Building No. 33 style */}
-      <g transform="translate(820, 80)" opacity="0.1">
+      <g transform="translate(820, 80)" opacity="0.26">
         {[0, 60, 120, 180, 240, 300].map((offset) => (
           <line
             key={`f${offset}`}
             x1={240 + offset} y1="0"
             x2={offset} y2="360"
             stroke={strokeColor}
-            strokeWidth="0.5"
+            strokeWidth="0.8"
           />
         ))}
         {[
@@ -94,14 +94,14 @@ export default function InsleyGrid({
             key={`c${i}`}
             x1={x1} y1={y1} x2={x2} y2={y2}
             stroke={strokeColor}
-            strokeWidth="0.3"
+            strokeWidth="0.5"
           />
         ))}
       </g>
 
       {/* Colored diagonal rays — Insley's pencil elevation drawings */}
       {variant !== 'dark' && (
-        <g opacity="0.055">
+        <g opacity="0.15">
           {[
             ['rgba(140,110,180,0.7)', 600, 0, 1400, 440],
             ['rgba(140,110,180,0.6)', 660, 0, 1400, 420],
@@ -114,7 +114,7 @@ export default function InsleyGrid({
               x1={x1 as number} y1={y1 as number}
               x2={x2 as number} y2={y2 as number}
               stroke={stroke as string}
-              strokeWidth="0.5"
+              strokeWidth="1"
             />
           ))}
         </g>
@@ -123,25 +123,25 @@ export default function InsleyGrid({
       {/* Dark variant: pink + blue Insley elevation bands */}
       {variant === 'dark' && (
         <g>
-          {['rgba(210,160,140,0.25)', 'rgba(210,160,140,0.18)', 'rgba(210,160,140,0.18)'].map(
+          {['rgba(210,160,140,0.55)', 'rgba(210,160,140,0.40)', 'rgba(210,160,140,0.38)'].map(
             (stroke, i) => (
               <line
                 key={`p${i}`}
                 x1="0" y1={100 + i * 20}
                 x2="1400" y2={300 + i * 20}
                 stroke={stroke}
-                strokeWidth={i === 0 ? '1' : '0.5'}
+                strokeWidth={i === 0 ? '1.2' : '0.8'}
               />
             )
           )}
-          {['rgba(140,165,210,0.22)', 'rgba(140,165,210,0.16)', 'rgba(140,165,210,0.14)'].map(
+          {['rgba(140,165,210,0.50)', 'rgba(140,165,210,0.36)', 'rgba(140,165,210,0.30)'].map(
             (stroke, i) => (
               <line
                 key={`b${i}`}
                 x1="0" y1={400 + i * 20}
                 x2="1400" y2={200 + i * 20}
                 stroke={stroke}
-                strokeWidth={i === 0 ? '1' : '0.5'}
+                strokeWidth={i === 0 ? '1.2' : '0.8'}
               />
             )
           )}

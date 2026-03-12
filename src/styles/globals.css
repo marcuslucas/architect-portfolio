@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-cormorant: 'Cormorant Garamond', Georgia, serif;
+  --ink: #1a1916;
+  --vellum: #f4f1ea;
+  --stone: #c8c4b8;
+  --dust: #e8e4dc;
+  --pale: #f9f7f3;
+  --warm: #faf8f4;
+  --accent: #c8a882;
+  --grid-pink: rgba(210, 160, 140, 0.18);
+  --grid-blue: rgba(140, 165, 210, 0.12);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--warm);
+  color: var(--ink);
+  font-family: var(--font-cormorant);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: var(--warm);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--stone);
+}
+
+/* Selection */
+::selection {
+  background: var(--ink);
+  color: var(--vellum);
+}
+
+/* ─── Typography Base ─── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-cormorant);
+  font-weight: 300;
+  line-height: 1.05;
+}
+
+p {
+  font-family: var(--font-cormorant);
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ─── Utility Classes ─── */
+.eyebrow {
+  font-family: var(--font-cormorant);
+  font-weight: 300;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.45;
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: var(--font-cormorant);
+  font-weight: 300;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink);
+  opacity: 0.4;
+  margin-bottom: 64px;
+}
+
+.section-label::after {
+  content: '';
+  display: block;
+  flex: 1;
+  height: 0.5px;
+  background: var(--ink);
+  opacity: 0.15;
+}
+
+.divider {
+  height: 0.5px;
+  background: rgba(26, 25, 22, 0.1);
+  width: 100%;
+}
+
+/* ─── Insley Grid Background Utility ─── */
+.grid-bg {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 79px,
+      rgba(26, 25, 22, 0.04) 79px,
+      rgba(26, 25, 22, 0.04) 80px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 79px,
+      rgba(26, 25, 22, 0.04) 79px,
+      rgba(26, 25, 22, 0.04) 80px
+    );
+}
+
+.grid-bg-fine {
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 39px,
+      rgba(26, 25, 22, 0.04) 39px,
+      rgba(26, 25, 22, 0.04) 40px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 39px,
+      rgba(26, 25, 22, 0.04) 39px,
+      rgba(26, 25, 22, 0.04) 40px
+    );
+}
+
+/* ─── Button Styles ─── */
+.btn-primary {
+  display: inline-block;
+  font-family: var(--font-cormorant);
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--warm);
+  background: var(--ink);
+  padding: 15px 36px;
+  border: none;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.8;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-family: var(--font-cormorant);
+  font-weight: 300;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 0.3s ease;
+}
+
+.btn-outline:hover {
+  opacity: 1;
+}
+
+.btn-outline .arrow-line {
+  display: inline-block;
+  width: 32px;
+  height: 0.5px;
+  background: var(--ink);
+  transition: width 0.4s ease;
+}
+
+.btn-outline:hover .arrow-line {
+  width: 56px;
+}
+
+/* ─── Page Transition ─── */
+.page-enter {
+  opacity: 0;
+  transform: translateY(12px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}

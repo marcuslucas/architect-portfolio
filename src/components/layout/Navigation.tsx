@@ -52,7 +52,7 @@ export default function Navigation() {
   return (
     <>
       <motion.nav
-        initial={skipInitial ? false : { y: -20, opacity: 0 }}
+        initial={skipInitial || reducedMotion ? false : { y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
         style={{

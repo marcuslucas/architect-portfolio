@@ -49,6 +49,13 @@ export default function Navigation() {
     return () => { document.body.style.overflow = '' }
   }, [menuOpen])
 
+  // Escape key closes menu
+  useEffect(() => {
+    const handleKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setMenuOpen(false) }
+    document.addEventListener('keydown', handleKey)
+    return () => document.removeEventListener('keydown', handleKey)
+  }, [])
+
   return (
     <>
       <motion.nav
@@ -131,7 +138,8 @@ export default function Navigation() {
         {/* Hamburger — mobile only */}
         <button
           onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
+          aria-label={menuOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={menuOpen}
           className="nav-hamburger"
           style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px', display: 'none' }}
         >

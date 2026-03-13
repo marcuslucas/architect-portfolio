@@ -5,9 +5,9 @@ import { motion, useReducedMotion } from 'framer-motion'
 import Navigation from '@/components/layout/Navigation'
 import Footer from '@/components/layout/Footer'
 import ProjectGrid from '@/components/sections/ProjectGrid'
-import { projects } from '@/lib/projects'
+import { projects, type Project } from '@/lib/projects'
 
-const filterMap: Record<string, string[]> = {
+const filterMap: Record<string, Project['type'][]> = {
   Residential: ['Residence', 'Condominium'],
   Development: ['Development'],
   Commercial: ['Commercial'],

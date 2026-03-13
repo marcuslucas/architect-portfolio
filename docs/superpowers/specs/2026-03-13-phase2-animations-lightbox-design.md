@@ -8,7 +8,7 @@
 
 ## Overview
 
-Six animation and interaction features added to the existing Next.js 14 App Router portfolio. All features respect `prefers-reduced-motion`. Design constraints: Cormorant Garamond weight 300 only, warm monochrome palette (no blue), `border-radius: 0` on all new elements, 0.5px hairline borders only.
+Six animation and interaction features added to the existing Next.js 14 App Router portfolio. All features respect `prefers-reduced-motion`. Design constraints: Cormorant Garamond weight 300 only, warm monochrome palette (no blue in any **new** UI element — existing InsleyGrid SVG colors are grandfathered), `border-radius: 0` on all new elements, 0.5px hairline borders only.
 
 Implementation approach: **Foundation-first** — build shared infrastructure components (`PageTransitionProvider`, `RevealOnScroll`, `Lightbox`) as standalone files first, then wire into pages/components in a second pass.
 
@@ -25,16 +25,18 @@ Fade pages in/out at 400ms opacity on route change. No slides or transforms.
 
 ### Implementation
 
-`PageTransitionProvider` wraps children in `<AnimatePresence mode="wait">`. It calls `usePathname()` internally to key the motion wrapper.
+`PageTransitionProvider` wraps children in `<AnimatePresence mode="wait">`. It calls `usePathname()` and `useReducedMotion()` internally to key the motion wrapper and collapse animation duration when the user prefers reduced motion.
 
 ```tsx
 // PageTransitionProvider.tsx
 'use client'
-import { AnimatePresence, motion } from 'framer-motion'
+import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 
-export default function PageTransitionProvider({ children }) {
+export default function PageTransitionProvider({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
+  const reducedMotion = useReducedMotion()
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -42,7 +44,7 @@ export default function PageTransitionProvider({ children }) {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        transition={{ duration: 0.4, ease: 'easeInOut' }}
+        transition={{ duration: reducedMotion ? 0 : 0.4, ease: 'easeInOut' }}
       >
         {children}
       </motion.div>
@@ -51,17 +53,28 @@ export default function PageTransitionProvider({ children }) {
 }
 ```
 
-`layout.tsx` body:
+`layout.tsx` body — Navigation and Footer are **not** moved into layout; they remain per-page as the current pattern dictates:
 ```tsx
 <body>
   <PageTransitionProvider>{children}</PageTransitionProvider>
 </body>
 ```
 
-Navigation and Footer are rendered per-page (already the pattern), so they correctly persist outside the transition wrapper.
+### Navigation Flicker Fix
+The existing `Navigation.tsx` has `initial={{ y: -20, opacity: 0 }}` on its `motion.nav`. Because Navigation is inside each page component (which is inside `PageTransitionProvider`), it will re-animate on every route change. To prevent this, the `motion.nav` in `Navigation.tsx` must suppress its `initial` animation after first mount. Use a `hasMounted` ref:
+
+```tsx
+const hasMounted = useRef(false)
+useEffect(() => { hasMounted.current = true }, [])
+
+// On motion.nav:
+initial={hasMounted.current ? false : { y: -20, opacity: 0 }}
+```
+
+This means: on first page load, the nav animates in once. On subsequent route changes (re-renders via PageTransitionProvider keying), `initial={false}` tells Framer Motion to skip the initial animation entirely.
 
 ### Reduced Motion
-No special handling needed — `AnimatePresence` with `duration: 0` would be the fallback, but since the transition is opacity-only and 400ms, the standard `prefers-reduced-motion` media query handled by the browser covers this. If needed, check `useReducedMotion()` and set `duration: 0`.
+`useReducedMotion()` is checked inside `PageTransitionProvider`. When true, `duration: 0` — transitions fire instantly with no visible animation. This is mandatory (CSS `prefers-reduced-motion` media queries do not affect Framer Motion JavaScript animations).
 
 ---
 
@@ -86,10 +99,10 @@ interface RevealOnScrollProps {
 
 ```tsx
 'use client'
-import { useRef } from 'react'
+import React, { useRef } from 'react'
 import { motion, useInView, useReducedMotion } from 'framer-motion'
 
-export default function RevealOnScroll({ children, className, style }) {
+export default function RevealOnScroll({ children, className, style }: RevealOnScrollProps) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: true, margin: '-60px' })
   const reducedMotion = useReducedMotion()
@@ -101,7 +114,7 @@ export default function RevealOnScroll({ children, className, style }) {
           initial={{ opacity: reducedMotion ? 1 : 0, y: reducedMotion ? 0 : 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{
-            duration: 0.6,
+            duration: reducedMotion ? 0 : 0.6,
             delay: reducedMotion ? 0 : index * 0.08,
             ease: [0.25, 0.46, 0.45, 0.94],
           }}
@@ -114,17 +127,23 @@ export default function RevealOnScroll({ children, className, style }) {
 }
 ```
 
+### Layout Constraint
+Each child is wrapped in a `<motion.div>`. This means:
+- Do **not** pass `<li>` elements as direct children (produces invalid HTML `<div>` inside `<ul>`/`<ol>`)
+- Do **not** pass block elements that must be direct children of a flex/grid container — the `motion.div` wrapper will become the grid/flex child, which is intentional and fine for most use cases
+- Callers should pass semantically neutral children (`<div>`, `<section>`, already-wrapped components) where layout correctness matters
+
 ### Behaviour
 - The outer `div` is the `ref` target. When it enters the viewport (60px before fully visible), all children animate in with staggered 80ms delays.
 - `once: true` — no re-animation on scroll up.
-- `reducedMotion: true` — `initial` collapses to `{ opacity: 1, y: 0 }`, delay is 0. Children render immediately with no motion.
+- `reducedMotion: true` — `initial` collapses to `{ opacity: 1, y: 0 }`, delay is 0, duration is 0. Children render immediately with no motion.
 
 ### Usage
 ```tsx
 <RevealOnScroll>
-  <p>First — 0ms delay</p>
-  <p>Second — 80ms delay</p>
-  <p>Third — 160ms delay</p>
+  <div>First — 0ms delay</div>
+  <div>Second — 80ms delay</div>
+  <div>Third — 160ms delay</div>
 </RevealOnScroll>
 ```
 
@@ -138,34 +157,34 @@ Very slow, atmospheric x-axis drift on the InsleyGrid SVG in HeroSection. 4px x-
 ### Changed File
 `src/components/ui/InsleyGrid.tsx` — no new file.
 
+### Grandfathered Colors
+The existing SVG uses blue-purple tones (`rgba(130,140,200,...)`) in its diagonal rays and dark variant elevation bands. These are **not** changed — they are grandfathered existing colors, not new UI elements. The "no blue" constraint applies only to new elements added by this spec.
+
 ### Implementation
 
-Convert `<svg>` to `<motion.svg>`. Add `useAnimation` and `useReducedMotion`:
+Use declarative Framer Motion animate array syntax (preferred over `useAnimation` for infinite loops — handles `reducedMotion` runtime changes automatically without needing `controls.stop()`):
 
 ```tsx
-const controls = useAnimation()
+import { motion, useReducedMotion } from 'framer-motion'
+
+// Inside the component:
 const reducedMotion = useReducedMotion()
 
-useEffect(() => {
-  if (reducedMotion) return
-  controls.start({
-    x: [0, 4, 0],
-    transition: {
-      duration: 20,
-      repeat: Infinity,
-      ease: 'easeInOut',
-    },
-  })
-}, [controls, reducedMotion])
-
-// <motion.svg animate={controls} ...>
+// Convert <svg> to <motion.svg>:
+<motion.svg
+  animate={reducedMotion ? {} : { x: [0, 4, 0] }}
+  transition={{ duration: 20, repeat: Infinity, ease: 'easeInOut' }}
+  // ...existing svg props
+>
 ```
+
+When `reducedMotion` is true, `animate={}` — Framer Motion applies no animation. If the user enables `prefers-reduced-motion` mid-session, the declarative form responds automatically (no `controls.stop()` required).
 
 ### Constraints
 - Only `x` translate — no scale, opacity, or y movement
 - 4px over 20 seconds reads as atmospheric drift, not visible animation
 - Only `HeroSection.tsx` uses `variant="hero"` — this is the only visible callsite
-- When `reducedMotion` is true, `useEffect` returns early, SVG is completely static
+- `border-radius: 0` is not applicable (SVG element)
 
 ---
 
@@ -177,24 +196,30 @@ On hover, dark overlay fades in over ProjectsGrid card image, revealing project 
 ### Changed File
 `src/components/sections/ProjectsGrid.tsx`
 
-### Card Structure (post-change)
+### Structural Change: Remove Outer Link Wrapper
+Currently, the entire card (image + info area) is wrapped in a single `<Link>`. This must be **restructured** — the outer `<Link>` wrapper is removed. The card becomes an `<article>` with two independently interactive children:
 
 ```
 <article>
-  <div onClick={openLightbox}>          ← image area, cursor: pointer
-    <Image ... />                        ← cover photo
-    <motion.div (overlay)>              ← fades in on hover
-      title / location / year text
-    </motion.div>
+  <div                                  ← image area (NOT a Link)
+    onClick={() => setLightboxOpen(true)}
+    onMouseEnter={() => setHovered(true)}
+    onMouseLeave={() => setHovered(false)}
+    style={{ position: 'relative', cursor: 'pointer', ... }}
+  >
+    <Image ... />
+    <motion.div (overlay, pointerEvents: none) />
   </div>
-  <Link href="/projects/[slug]">        ← info area navigates
+  <Link href="/projects/[slug]">        ← info area navigates to project page
     number / title / location row
   </Link>
 </article>
 ```
 
+The `<motion.div>` wrapper that currently wraps the entire card (for the stagger entry animation) wraps the `<article>` — this is unaffected by the restructure.
+
 ### Hover State
-`ProjectCard` adds `useState<boolean>(false)` for `hovered`. The image container div gets `onMouseEnter={() => setHovered(true)}` and `onMouseLeave={() => setHovered(false)}`.
+`ProjectCard` adds `useState<boolean>(false)` for `hovered` and `useState<boolean>(false)` for `lightboxOpen`. The image container div gets `onMouseEnter`/`onMouseLeave` toggling `hovered`.
 
 Overlay `motion.div`:
 ```tsx
@@ -208,14 +233,31 @@ Overlay `motion.div`:
     justifyContent: 'flex-end',
     padding: '20px 24px',
     pointerEvents: 'none',
+    borderRadius: 0,
   }}
 >
-  {/* title 19px, location 11px 0.12em spacing, year 11px — all Cormorant weight 300 */}
+  {/* title 19px Cormorant weight 300, white */}
+  {/* location 11px letter-spacing 0.12em opacity 0.7 */}
+  {/* year 11px letter-spacing 0.12em opacity 0.7 */}
 </motion.div>
 ```
 
 ### Existing CSS Removed
 The `article:hover .card-overlay { opacity: 1 !important; }` rule and the `.card-overlay` class are removed — Framer Motion handles the overlay entirely.
+
+### Lightbox Wiring in ProjectCard
+The `lightboxOpen` state and `<Lightbox>` render live inside each `ProjectCard` (not at the grid level), keeping state local to each card:
+
+```tsx
+{lightboxOpen && (
+  <Lightbox
+    images={[project.coverImage]}
+    onClose={() => setLightboxOpen(false)}
+  />
+)}
+```
+
+See Feature 5 for `AnimatePresence` placement.
 
 ---
 
@@ -236,39 +278,82 @@ interface LightboxProps {
 }
 ```
 
-### Overlay & Layout
-- `position: fixed`, `inset: 0`, `zIndex: 100`
-- `background: rgba(26,25,22,0.94)`
-- Click directly on overlay → `onClose()`
-- Click on image area → `stopPropagation()` (does not close)
+### AnimatePresence Placement
+The `AnimatePresence` for the overlay **entry/exit animation lives inside `Lightbox.tsx`**, not at the call site. The Lightbox manages its own open/close via an internal `isVisible` state that starts `true` and transitions to `false` on close (triggering the exit animation before unmount). When exit animation completes, `onClose()` is called to unmount the component from the parent.
 
-### Animation
-- Overlay: `AnimatePresence` + `motion.div`, `opacity: 0 → 1`, `duration: 200ms`
-- Image: `motion.div` with `key={currentIndex}`, `initial={{ opacity: 0, scale: 0.96 }}`, `animate={{ opacity: 1, scale: 1 }}`, `transition={{ duration: 0.3 }}`
+Pattern:
+```tsx
+// Inside Lightbox.tsx
+const [isVisible, setIsVisible] = useState(true)
+
+const handleClose = () => setIsVisible(false)  // triggers exit animation
+
+// onExitComplete fires after exit animation finishes:
+<AnimatePresence onExitComplete={onClose}>
+  {isVisible && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.2 }}
+      // ... overlay styles
+    />
+  )}
+</AnimatePresence>
+```
+
+All close triggers (Escape key, overlay click, arrow that reaches end) call `handleClose()` internally — not `onClose()` directly.
+
+### Overlay & Layout
+- `position: fixed`, `inset: 0`, `zIndex: 100`, `borderRadius: 0`
+- `background: rgba(26,25,22,0.94)`
+- Click directly on overlay `motion.div` → `handleClose()`
+- Image container: `e.stopPropagation()` on click (does not bubble to overlay)
 
 ### Image Display
-- `<Image>` component, `fill` layout inside a sized container
-- Container: `max-width: 90vw`, `max-height: 85vh`, `position: relative`
-- `objectFit: 'contain'`
+- `<Image>` component inside a `motion.div` with `key={currentIndex}`
+- `motion.div`: `initial={{ opacity: 0, scale: 0.96 }}`, `animate={{ opacity: 1, scale: 1 }}`, `transition={{ duration: 0.3 }}`
+- Image container: `position: 'relative'`, `width: '90vw'`, `height: '85vh'`
+- `<Image fill objectFit="contain" />`
+- `borderRadius: 0` on image container
 
 ### Navigation
-- Two arrow buttons (`←` `→`) as SVG chevrons, positioned absolute left/right center of overlay
-- `cursor: pointer`, no background, no border
-- Wraps at boundaries: last → first, first → last
-- Keyboard: `useEffect` adds `keydown` listener on mount, removes on unmount
-  - `ArrowLeft` → prev
-  - `ArrowRight` → next
-  - `Escape` → `onClose()`
+- Two SVG chevron buttons, `position: absolute`, vertically centered left/right of overlay
+- `cursor: pointer`, `background: none`, `border: none`, `borderRadius: 0`, `color: rgba(255,255,255,0.6)`
+- Wraps at boundaries: index goes `last → 0` and `0 → last`
+- Keyboard `useEffect`:
+  ```tsx
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') prev()
+      if (e.key === 'ArrowRight') next()
+      if (e.key === 'Escape') handleClose()
+    }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [currentIndex])
+  ```
 
 ### Touch
-- `onTouchStart` records `touchStartX`
-- `onTouchEnd` computes delta; if `|delta| > 50px`: negative delta → next, positive → prev
+```tsx
+const touchStartX = useRef(0)
+
+onTouchStart={(e) => { touchStartX.current = e.touches[0].clientX }}
+onTouchEnd={(e) => {
+  const delta = e.changedTouches[0].clientX - touchStartX.current
+  // delta = touchEnd - touchStart
+  // Swipe left (negative delta) → next image
+  // Swipe right (positive delta) → prev image
+  if (delta < -50) next()
+  if (delta > 50) prev()
+}}
+```
 
 ### Counter
-- Bottom center of overlay
-- Format: `"01 / 04"` (zero-padded to 2 digits)
-- Cormorant Garamond weight 300, 11px, letter-spacing 0.2em, opacity 0.5
-- `pointerEvents: none`
+- Bottom center of overlay, `position: absolute`, `bottom: 32px`
+- Format: `"01 / 04"` — zero-pad with `String(n).padStart(2, '0')`
+- Cormorant Garamond weight 300, 11px, letter-spacing 0.2em, opacity 0.5, color white
+- `pointerEvents: none`, `borderRadius: 0`
 
 ### Body Scroll Lock
 ```tsx
@@ -278,17 +363,17 @@ useEffect(() => {
 }, [])
 ```
 
-### Wiring
+### Wiring at Call Sites
+Call sites use conditional rendering (`{condition && <Lightbox />}`). The `AnimatePresence` is internal — exit animations work correctly because the internal `isVisible` state controls the `motion.div`, not the parent's conditional render. The Lightbox only unmounts (parent condition becomes false) after `onExitComplete` fires `onClose()`.
 
-**ProjectsGrid cards:**
+**ProjectsGrid — inside `ProjectCard`:**
 ```tsx
-// State in ProjectsGrid (or ProjectCard)
 const [lightboxOpen, setLightboxOpen] = useState(false)
 
-// Image div onClick
+// image div onClick:
 onClick={() => setLightboxOpen(true)}
 
-// Render Lightbox
+// render:
 {lightboxOpen && (
   <Lightbox
     images={[project.coverImage]}
@@ -301,10 +386,10 @@ onClick={() => setLightboxOpen(true)}
 ```tsx
 const [lightboxIndex, setLightboxIndex] = useState<number | null>(null)
 
-// Each photo div onClick
+// each photo div onClick:
 onClick={() => setLightboxIndex(i)}
 
-// Render Lightbox
+// render:
 {lightboxIndex !== null && (
   <Lightbox
     images={project.images}
@@ -319,53 +404,76 @@ onClick={() => setLightboxIndex(i)}
 ## Feature 6: Nav Scroll Shrink
 
 ### Goal
-Navigation padding smoothly transitions from 24px to 14px when scrolled past 80px, driven by scroll position (not boolean snap).
+Navigation `paddingTop`/`paddingBottom` smoothly transitions from 24px to 14px as user scrolls from 0 to 80px. Driven by scroll position (smooth interpolation, not boolean snap). Falls back to instant snap under `prefers-reduced-motion`.
 
 ### Changed File
 `src/components/layout/Navigation.tsx`
 
-### Implementation
+### Padding Shorthand Removal
+The existing `motion.nav` has `padding: '24px 48px'` as a shorthand. This **must be split** into `paddingTop`, `paddingBottom`, `paddingLeft`, `paddingRight` — otherwise the shorthand overrides the MotionValue-driven `paddingTop`/`paddingBottom`:
 
-Replace padding state with `useScroll` + `useTransform`:
+```tsx
+// Before:
+style={{ padding: '24px 48px', ... }}
+
+// After:
+style={{
+  paddingTop: paddingY,
+  paddingBottom: paddingY,
+  paddingLeft: '48px',
+  paddingRight: '48px',
+  // ...rest of styles
+}}
+```
+
+### Implementation
 
 ```tsx
 const { scrollY } = useScroll()
-const paddingY = useTransform(scrollY, [0, 80], [24, 14])
-```
-
-The existing `motion.nav` gets `style={{ paddingTop: paddingY, paddingBottom: paddingY }}`.
-
-The existing `scrolled` boolean state **stays** — it still controls the glassmorphism effect (backdrop-filter, background opacity). Only the padding becomes scroll-linked.
-
-### Reduced Motion
-```tsx
 const reducedMotion = useReducedMotion()
-// If reducedMotion: use scrolled boolean to snap padding (24 or 14),
-// not useTransform interpolation
+const paddingYMotion = useTransform(scrollY, [0, 80], [24, 14])
+
+// For reduced motion: use scrolled boolean (snaps at 80px threshold, consistent with transform range)
+const [scrolled80, setScrolled80] = useState(false)
+useEffect(() => {
+  const unsub = scrollY.on('change', (v) => setScrolled80(v > 80))
+  return unsub
+}, [scrollY])
+
+const paddingY = reducedMotion
+  ? (scrolled80 ? 14 : 24)
+  : paddingYMotion
 ```
+
+The `paddingY` value (either a MotionValue or a plain number) is passed to `style={{ paddingTop: paddingY, paddingBottom: paddingY }}`. Framer Motion's `motion.nav` accepts both MotionValues and plain numbers in `style`.
+
+### Threshold Alignment
+Both the animated path (`useTransform` range `[0, 80]`) and the reduced-motion fallback (`scrolled80` at `> 80px`) use 80px as the threshold — consistent behavior regardless of motion preference.
+
+The existing `scrolled` boolean (currently triggers at 40px) is kept exclusively for the glassmorphism effect (background, backdrop-filter). It is not used for padding.
 
 ---
 
 ## File Change Summary
 
-| File | Change Type |
-|------|-------------|
-| `src/components/layout/PageTransitionProvider.tsx` | **New** |
-| `src/components/ui/RevealOnScroll.tsx` | **New** |
-| `src/components/ui/Lightbox.tsx` | **New** |
-| `src/app/layout.tsx` | Modified — add PageTransitionProvider wrapper |
-| `src/components/ui/InsleyGrid.tsx` | Modified — add breathing animation |
-| `src/components/sections/ProjectsGrid.tsx` | Modified — card hover + Lightbox wiring |
-| `src/app/projects/[slug]/page.tsx` | Modified — gallery Lightbox wiring |
-| `src/components/layout/Navigation.tsx` | Modified — scroll-linked padding |
+| File | Change Type | Notes |
+|------|-------------|-------|
+| `src/components/layout/PageTransitionProvider.tsx` | **New** | AnimatePresence wrapper |
+| `src/components/ui/RevealOnScroll.tsx` | **New** | Scroll-triggered stagger component |
+| `src/components/ui/Lightbox.tsx` | **New** | Full-screen image viewer |
+| `src/app/layout.tsx` | Modified | Add `<PageTransitionProvider>` wrapper |
+| `src/components/ui/InsleyGrid.tsx` | Modified | Add declarative breathing animation |
+| `src/components/layout/Navigation.tsx` | Modified | Scroll-linked padding + hasMounted flicker fix |
+| `src/components/sections/ProjectsGrid.tsx` | Modified | Restructure card, hover overlay, Lightbox wiring |
+| `src/app/projects/[slug]/page.tsx` | Modified | Gallery Lightbox wiring |
 
 ---
 
 ## Design Constraints (from MASTER.md)
 
-- Cormorant Garamond weight 300 only for all new text
-- Warm monochrome palette — no blue in any new UI element
-- `border-radius: 0` on all new elements (Lightbox overlay, arrows, counter)
-- 0.5px hairline borders only — no thick borders
-- `prefers-reduced-motion` respected in every animated feature
-- Transition durations: 200ms (overlays), 300ms (lightbox image), 400ms (page), 600ms (scroll reveal), 20s (grid drift)
+- Cormorant Garamond weight 300 only for all new text elements
+- Warm monochrome palette — no blue in any **new** UI element; existing InsleyGrid SVG blue-purple tones are grandfathered
+- `border-radius: 0` on all new elements (Lightbox overlay, image container, arrow buttons, counter)
+- 0.5px hairline borders only — no thick borders on new elements
+- `prefers-reduced-motion` respected in **every** animated feature via `useReducedMotion()` (CSS media queries alone do not affect Framer Motion JS animations)
+- Transition durations: 200ms (card overlay, lightbox open/close), 300ms (lightbox image change), 400ms (page transition, or 0ms reduced), 600ms (scroll reveal, or 0ms reduced), 20s (grid drift, or static)

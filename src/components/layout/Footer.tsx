@@ -3,26 +3,26 @@
 import Link from 'next/link'
 
 const col2Links = [
-  [
-    { href: '/projects', label: 'Portfolio' },
-    { href: '/process', label: 'Philosophy' },
-    { href: '/contact', label: 'Contact' },
-  ],
-  [
-    { href: '/studio', label: 'Studio' },
-    { href: '/journal', label: 'Journal' },
-  ],
+  {
+    id: 'primary',
+    links: [
+      { href: '/projects', label: 'Portfolio' },
+      { href: '/process', label: 'Philosophy' },
+      { href: '/contact', label: 'Contact' },
+    ],
+  },
+  {
+    id: 'secondary',
+    links: [
+      { href: '/studio', label: 'Studio' },
+      { href: '/journal', label: 'Journal' },
+    ],
+  },
 ]
 
 export default function Footer() {
   return (
-    <footer
-      style={{
-        background: 'var(--warm)',
-        borderTop: '0.5px solid rgba(26,25,22,0.08)',
-        padding: '72px 56px 40px',
-      }}
-    >
+    <footer className="footer-wrapper">
       {/* Three-column grid */}
       <div
         className="footer-grid"
@@ -59,9 +59,9 @@ export default function Footer() {
             gap: '8px 16px',
           }}
         >
-          {col2Links.map((col, ci) => (
-            <div key={ci} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              {col.map((link) => (
+          {col2Links.map((col) => (
+            <div key={col.id} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {col.links.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
@@ -153,25 +153,34 @@ export default function Footer() {
         >
           "to contain spatial situations sympathetic to the horizon line."
         </span>
-        <span
+        <Link
+          href="/privacy"
+          className="footer-link"
           style={{
             fontFamily: 'var(--font-cormorant)',
             fontWeight: 300,
             fontSize: '10px',
             letterSpacing: '0.18em',
             color: 'var(--ink)',
+            textDecoration: 'none',
             opacity: 0.4,
+            transition: 'opacity 200ms ease',
           }}
         >
           Privacy
-        </span>
+        </Link>
       </div>
 
       <style>{`
+        .footer-wrapper {
+          background: var(--warm);
+          border-top: 0.5px solid rgba(26,25,22,0.08);
+          padding: 72px 56px 40px;
+        }
         .footer-link:hover { opacity: 1 !important; }
         @media (max-width: 768px) {
+          .footer-wrapper { padding: 48px 24px 32px !important; }
           .footer-grid { grid-template-columns: 1fr !important; }
-          footer { padding: 48px 24px 32px !important; }
         }
       `}</style>
     </footer>

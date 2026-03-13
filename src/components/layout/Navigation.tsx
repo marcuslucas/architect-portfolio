@@ -3,30 +3,47 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 
 const navLinks = [
-  { href: '/projects', label: 'Projects' },
-  { href: '/process', label: 'Process' },
+  { href: '/projects', label: 'Portfolio' },
+  { href: '/process', label: 'Philosophy' },
   { href: '/studio', label: 'Studio' },
   { href: '/journal', label: 'Journal' },
+  { href: '/contact', label: 'Contact' },
 ]
 
+// Module-level singleton — persists across route remounts in the same browser session
+let navigationHasMounted = false
+
 export default function Navigation() {
-  const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled80, setScrolled80] = useState(false)
   const pathname = usePathname()
+  const { scrollY } = useScroll()
+  const reducedMotion = useReducedMotion()
 
+  // Singleton mount flag: animates in once on first visit, skips on route changes
+  const [skipInitial] = useState(() => {
+    const skip = navigationHasMounted
+    if (typeof window !== 'undefined') navigationHasMounted = true
+    return skip
+  })
+
+  const paddingYMotion = useTransform(scrollY, [0, 80], [28, 16])
+
+  // Reduced-motion fallback: snap padding at 80px threshold
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
+    const unsub = scrollY.on('change', (v) => setScrolled80(v > 80))
+    return unsub
+  }, [scrollY])
 
-  useEffect(() => {
-    setMenuOpen(false)
-  }, [pathname])
+  const paddingY = reducedMotion ? (scrolled80 ? 16 : 28) : paddingYMotion
 
+  // Close menu on route change
+  useEffect(() => { setMenuOpen(false) }, [pathname])
+
+  // Body scroll lock when menu open
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
@@ -35,7 +52,7 @@ export default function Navigation() {
   return (
     <>
       <motion.nav
-        initial={{ y: -20, opacity: 0 }}
+        initial={skipInitial ? false : { y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
         style={{
@@ -43,20 +60,18 @@ export default function Navigation() {
           top: 0,
           left: 0,
           right: 0,
-          zIndex: 200,
+          zIndex: 50,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
-          padding: '24px 48px',
-          background: scrolled
-            ? 'rgba(250, 248, 244, 0.92)'
-            : 'rgba(250, 248, 244, 0)',
-          backdropFilter: scrolled ? 'blur(16px)' : 'none',
-          borderBottom: scrolled
-            ? '0.5px solid rgba(26, 25, 22, 0.08)'
-            : '0.5px solid transparent',
-          transition:
-            'background 0.5s ease, backdrop-filter 0.5s ease, border-color 0.5s ease',
+          paddingTop: paddingY,
+          paddingBottom: paddingY,
+          paddingLeft: '56px',
+          paddingRight: '56px',
+          background: 'rgba(250,248,244,0.92)',
+          backdropFilter: 'blur(16px)',
+          WebkitBackdropFilter: 'blur(16px)',
+          borderBottom: '0.5px solid rgba(26,25,22,0.08)',
         }}
       >
         {/* Logo */}
@@ -65,17 +80,17 @@ export default function Navigation() {
           style={{
             fontFamily: 'var(--font-cormorant)',
             fontWeight: 300,
-            fontSize: '14px',
-            letterSpacing: '0.22em',
+            fontSize: '13px',
+            letterSpacing: '0.18em',
             textTransform: 'uppercase',
             color: 'var(--ink)',
             textDecoration: 'none',
           }}
         >
-          Dustin Brady
+          Dustin Brady Architecture
         </Link>
 
-        {/* Desktop Nav */}
+        {/* Desktop nav */}
         <ul
           style={{
             display: 'flex',
@@ -84,178 +99,131 @@ export default function Navigation() {
             margin: 0,
             padding: 0,
           }}
-          className="hidden-mobile"
+          className="nav-desktop"
         >
-          {navLinks.map((link) => (
-            <li key={link.href}>
-              <Link
-                href={link.href}
-                style={{
-                  fontFamily: 'var(--font-cormorant)',
-                  fontWeight: 300,
-                  fontSize: '11px',
-                  letterSpacing: '0.18em',
-                  textTransform: 'uppercase',
-                  color: 'var(--ink)',
-                  textDecoration: 'none',
-                  opacity: pathname === link.href ? 1 : 0.5,
-                  borderBottom:
-                    pathname === link.href
-                      ? '0.5px solid var(--ink)'
-                      : '0.5px solid transparent',
-                  paddingBottom: '2px',
-                  transition: 'opacity 0.3s ease',
-                }}
-              >
-                {link.label}
-              </Link>
-            </li>
-          ))}
+          {navLinks.map((link) => {
+            const active = pathname.startsWith(link.href)
+            return (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  style={{
+                    fontFamily: 'var(--font-cormorant)',
+                    fontWeight: 300,
+                    fontSize: '11px',
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase',
+                    color: 'var(--ink)',
+                    textDecoration: 'none',
+                    opacity: active ? 1 : 0.55,
+                    borderBottom: active ? '0.5px solid var(--stone)' : '0.5px solid transparent',
+                    paddingBottom: '2px',
+                    transition: 'opacity 200ms ease',
+                  }}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            )
+          })}
         </ul>
 
-        {/* Right side */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '32px' }}>
-          <Link
-            href="/contact"
-            style={{
-              fontFamily: 'var(--font-cormorant)',
-              fontWeight: 300,
-              fontSize: '11px',
-              letterSpacing: '0.18em',
-              textTransform: 'uppercase',
-              color: 'var(--ink)',
-              textDecoration: 'none',
-              borderBottom: '0.5px solid rgba(26,25,22,0.4)',
-              paddingBottom: '2px',
-              opacity: 0.7,
-              transition: 'opacity 0.3s',
-            }}
-            className="hidden-mobile"
-          >
-            Enquire
-          </Link>
-
-          {/* Hamburger — mobile */}
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            aria-label="Toggle menu"
-            style={{
-              background: 'none',
-              border: 'none',
-              cursor: 'pointer',
-              padding: '4px',
-              display: 'none',
-            }}
-            className="show-mobile"
-          >
+        {/* Hamburger — mobile only */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Toggle menu"
+          className="nav-hamburger"
+          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: '4px', display: 'none' }}
+        >
+          {[0, 1, 2].map((i) => (
             <div
+              key={i}
               style={{
-                width: '24px',
+                width: '20px',
                 height: '0.5px',
                 background: 'var(--ink)',
-                marginBottom: '7px',
-                transition: 'transform 0.3s, opacity 0.3s',
-                transform: menuOpen ? 'translateY(7.5px) rotate(45deg)' : 'none',
+                marginBottom: i < 2 ? '5px' : 0,
+                transition: 'transform 0.3s ease, opacity 0.3s ease',
+                transform:
+                  i === 0 && menuOpen ? 'translateY(5.5px) rotate(45deg)'
+                  : i === 2 && menuOpen ? 'translateY(-5.5px) rotate(-45deg)'
+                  : 'none',
+                opacity: i === 1 && menuOpen ? 0 : 1,
               }}
             />
-            <div
-              style={{
-                width: '24px',
-                height: '0.5px',
-                background: 'var(--ink)',
-                marginBottom: '7px',
-                opacity: menuOpen ? 0 : 1,
-                transition: 'opacity 0.3s',
-              }}
-            />
-            <div
-              style={{
-                width: '24px',
-                height: '0.5px',
-                background: 'var(--ink)',
-                transition: 'transform 0.3s',
-                transform: menuOpen ? 'translateY(-7.5px) rotate(-45deg)' : 'none',
-              }}
-            />
-          </button>
-        </div>
+          ))}
+        </button>
       </motion.nav>
 
-      {/* Mobile menu overlay */}
+      {/* Mobile overlay */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
             style={{
               position: 'fixed',
               inset: 0,
-              zIndex: 150,
+              zIndex: 100,
               background: 'var(--warm)',
               display: 'flex',
               flexDirection: 'column',
               justifyContent: 'center',
+              alignItems: 'center',
               padding: '48px',
             }}
           >
-            <nav>
-              {[...navLinks, { href: '/contact', label: 'Enquire' }].map(
-                (link, i) => (
-                  <motion.div
-                    key={link.href}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.1 + i * 0.08, duration: 0.5 }}
-                    style={{ marginBottom: '32px' }}
+            <nav style={{ textAlign: 'center' }}>
+              {navLinks.map((link, i) => (
+                <motion.div
+                  key={link.href}
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.05 + i * 0.07, duration: 0.4 }}
+                  style={{ marginBottom: '28px' }}
+                >
+                  <Link
+                    href={link.href}
+                    style={{
+                      fontFamily: 'var(--font-cormorant)',
+                      fontWeight: 300,
+                      fontSize: '32px',
+                      color: 'var(--ink)',
+                      textDecoration: 'none',
+                      opacity: pathname.startsWith(link.href) ? 1 : 0.5,
+                    }}
                   >
-                    <Link
-                      href={link.href}
-                      style={{
-                        fontFamily: 'var(--font-cormorant)',
-                        fontWeight: 300,
-                        fontSize: 'clamp(32px, 8vw, 52px)',
-                        color: 'var(--ink)',
-                        textDecoration: 'none',
-                        opacity: pathname === link.href ? 1 : 0.5,
-                      }}
-                    >
-                      {link.label}
-                    </Link>
-                  </motion.div>
-                )
-              )}
+                    {link.label}
+                  </Link>
+                </motion.div>
+              ))}
             </nav>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
+            <div
               style={{
                 position: 'absolute',
                 bottom: '48px',
-                left: '48px',
                 fontFamily: 'var(--font-cormorant)',
                 fontWeight: 300,
                 fontSize: '11px',
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',
                 opacity: 0.3,
+                color: 'var(--ink)',
               }}
             >
               Miami · Naples · Palm Beach
-            </motion.div>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
 
       <style>{`
         @media (max-width: 768px) {
-          .hidden-mobile { display: none !important; }
-          .show-mobile { display: block !important; }
-        }
-        @media (min-width: 769px) {
-          .show-mobile { display: none !important; }
+          .nav-desktop { display: none !important; }
+          .nav-hamburger { display: block !important; }
+          nav[style] { padding-left: 24px !important; padding-right: 24px !important; }
         }
       `}</style>
     </>

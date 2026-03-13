@@ -5,12 +5,8 @@ import Link from 'next/link'
 import Navigation from '@/components/layout/Navigation'
 import Footer from '@/components/layout/Footer'
 import InsleyGrid from '@/components/ui/InsleyGrid'
-import ArchDrawing from '@/components/ui/ArchDrawing'
+import Image from 'next/image'
 import { projects } from '@/lib/projects'
-
-const drawingVariants: Array<'elevation' | 'section' | 'plan' | 'isometric'> = [
-  'elevation', 'section', 'plan', 'isometric', 'elevation', 'section',
-]
 
 const filters = ['All', 'Residence', 'Development', 'Condominium']
 
@@ -112,8 +108,14 @@ export default function ProjectsPage() {
                 transition={{ duration: 0.7, delay: i * 0.08, ease: [0.25, 0.46, 0.45, 0.94] }}
               >
                 <Link href={`/projects/${project.id}`} style={{ display: 'block', textDecoration: 'none', color: 'inherit', background: 'var(--warm)' }}>
-                  <div style={{ position: 'relative', aspectRatio: '3/4', overflow: 'hidden', background: project.coverColor }} className="grid-bg-fine">
-                    <ArchDrawing variant={drawingVariants[i % drawingVariants.length]} />
+                  <div style={{ position: 'relative', aspectRatio: '3/4', overflow: 'hidden', background: project.coverColor }}>
+                    <Image
+                      src={project.coverImage}
+                      alt={project.title}
+                      fill
+                      sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+                      style={{ objectFit: 'cover' }}
+                    />
                     <div
                       className="card-overlay"
                       style={{

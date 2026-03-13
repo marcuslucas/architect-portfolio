@@ -1,22 +1,24 @@
 'use client'
 
+import { use } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import Image from 'next/image'
 import Navigation from '@/components/layout/Navigation'
 import Footer from '@/components/layout/Footer'
-import ArchDrawing from '@/components/ui/ArchDrawing'
 import { getProjectById, projects } from '@/lib/projects'
 
 export default function ProjectDetailPage({
   params,
 }: {
-  params: { slug: string }
+  params: Promise<{ slug: string }>
 }) {
-  const project = getProjectById(params.slug)
+  const { slug } = use(params)
+  const project = getProjectById(slug)
   if (!project) notFound()
 
-  const projectIndex = projects.findIndex((p) => p.id === params.slug)
+  const projectIndex = projects.findIndex((p) => p.id === slug)
   const nextProject = projects[(projectIndex + 1) % projects.length]
 
   return (
@@ -35,8 +37,14 @@ export default function ProjectDetailPage({
             alignItems: 'flex-end',
           }}
         >
-          <div className="grid-bg-fine" style={{ position: 'absolute', inset: 0 }} />
-          <ArchDrawing variant="elevation" />
+          <Image
+            src={project.coverImage}
+            alt={project.title}
+            fill
+            sizes="100vw"
+            style={{ objectFit: 'cover' }}
+            priority
+          />
           <div
             style={{
               position: 'absolute',
@@ -97,16 +105,19 @@ export default function ProjectDetailPage({
           </motion.div>
         </section>
 
-        {/* Drawing gallery — 3 columns */}
+        {/* Photo gallery */}
         <section style={{ padding: '80px 48px' }}>
-          <div className="section-label">Drawings</div>
+          <div className="section-label">Photography</div>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5px', background: 'rgba(26,25,22,0.07)' }}>
-            {(['elevation', 'plan', 'section'] as const).map((variant, i) => (
-              <div key={variant} style={{ position: 'relative', aspectRatio: '4/3', background: project.coverColor }} className="grid-bg-fine">
-                <ArchDrawing variant={variant} />
-                <span style={{ position: 'absolute', bottom: '16px', left: '16px', fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.25 }}>
-                  {variant.charAt(0).toUpperCase() + variant.slice(1)}
-                </span>
+            {project.images.map((src, i) => (
+              <div key={src} style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden', background: project.coverColor }}>
+                <Image
+                  src={src}
+                  alt={`${project.title} — ${i + 1}`}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  style={{ objectFit: 'cover' }}
+                />
               </div>
             ))}
           </div>

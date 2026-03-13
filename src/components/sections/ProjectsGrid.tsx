@@ -2,18 +2,9 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { projects, type Project } from '@/lib/projects'
-import ArchDrawing from '@/components/ui/ArchDrawing'
-
-const drawingVariants: Array<'elevation' | 'section' | 'plan' | 'isometric'> = [
-  'elevation',
-  'section',
-  'plan',
-  'isometric',
-  'elevation',
-  'section',
-]
 
 export default function ProjectsGrid() {
   const ref = useRef(null)
@@ -54,10 +45,7 @@ export default function ProjectsGrid() {
                 cursor: 'pointer',
               }}
             >
-              <ProjectCard
-                project={project}
-                drawingVariant={drawingVariants[i % drawingVariants.length]}
-              />
+              <ProjectCard project={project} />
             </Link>
           </motion.div>
         ))}
@@ -93,13 +81,7 @@ export default function ProjectsGrid() {
   )
 }
 
-function ProjectCard({
-  project,
-  drawingVariant,
-}: {
-  project: Project
-  drawingVariant: 'elevation' | 'section' | 'plan' | 'isometric'
-}) {
+function ProjectCard({ project }: { project: Project }) {
   return (
     <article>
       {/* Drawing / Image area */}
@@ -111,15 +93,13 @@ function ProjectCard({
           background: project.coverColor,
         }}
       >
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: `${project.coverColor}`,
-          }}
-          className="grid-bg-fine"
+        <Image
+          src={project.coverImage}
+          alt={project.title}
+          fill
+          sizes="(max-width: 600px) 100vw, (max-width: 900px) 50vw, 33vw"
+          style={{ objectFit: 'cover' }}
         />
-        <ArchDrawing variant={drawingVariant} />
 
         {/* Hover overlay */}
         <div

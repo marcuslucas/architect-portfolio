@@ -13,14 +13,15 @@ export interface Project {
   tags: string[]
   featured: boolean
   coverColor: string
+  coverImage: string
+  images: string[]
 }
 
 export const projects: Project[] = [
   {
-    id: 'casa-del-horizonte',
+    id: 'house-01',
     number: '001',
-    title: 'Casa del',
-    subtitle: 'Horizonte',
+    title: 'Project I',
     location: 'Miami Beach, Florida',
     year: '2024',
     type: 'Residence',
@@ -33,11 +34,16 @@ export const projects: Project[] = [
     tags: ['Waterfront', 'Concrete', 'Glass', 'Teak'],
     featured: true,
     coverColor: '#ddd8ce',
+    coverImage: '/images/projects/house-01/01.JPG',
+    images: [
+      '/images/projects/house-01/01.JPG',
+      '/images/projects/house-01/02.JPG',
+    ],
   },
   {
-    id: 'villa-blanca',
+    id: 'house-02',
     number: '002',
-    title: 'Villa Blanca',
+    title: 'Project II',
     location: 'Naples, Florida',
     year: '2023',
     type: 'Residence',
@@ -46,16 +52,21 @@ export const projects: Project[] = [
     description:
       'A composition of interlocking white volumes organized around a central reflecting pool. The house negotiates between its dense botanical context and the sky.',
     longDescription:
-      "Set within a mature tropical garden, Villa Blanca required a strategy that honored both the existing landscape and the clients' desire for light-filled interior volumes. The solution was a cruciform plan that creates four distinct garden quadrants while allowing natural cross-ventilation through every major room.",
+      "Set within a mature tropical garden, this residence required a strategy that honored both the existing landscape and the clients' desire for light-filled interior volumes. The solution was a cruciform plan that creates four distinct garden quadrants while allowing natural cross-ventilation through every major room.",
     tags: ['Garden', 'Pool', 'White Render', 'Tropical'],
     featured: false,
     coverColor: '#d4d0c8',
+    coverImage: '/images/projects/house-02/01.JPG',
+    images: [
+      '/images/projects/house-02/01.JPG',
+      '/images/projects/house-02/02.JPG',
+      '/images/projects/house-02/03.JPG',
+    ],
   },
   {
-    id: 'coconut-grove-penthouse',
+    id: 'house-03',
     number: '003',
-    title: 'Coconut Grove',
-    subtitle: 'Penthouse',
+    title: 'Project III',
     location: 'Coconut Grove, Miami',
     year: '2023',
     type: 'Condominium',
@@ -68,12 +79,17 @@ export const projects: Project[] = [
     tags: ['Penthouse', 'Renovation', 'City Views', 'Interior'],
     featured: false,
     coverColor: '#cac6be',
+    coverImage: '/images/projects/house-03/01.JPG',
+    images: [
+      '/images/projects/house-03/01.JPG',
+      '/images/projects/house-03/02.JPG',
+      '/images/projects/house-03/03.JPG',
+    ],
   },
   {
-    id: 'coral-ridge-development',
+    id: 'house-04',
     number: '004',
-    title: 'Coral Ridge',
-    subtitle: 'Development',
+    title: 'Project IV',
     location: 'Fort Lauderdale, Florida',
     year: '2022',
     type: 'Development',
@@ -86,42 +102,11 @@ export const projects: Project[] = [
     tags: ['Development', 'Courtyard', 'Multi-unit', 'Luxury'],
     featured: false,
     coverColor: '#c8c4bc',
-  },
-  {
-    id: 'pine-island-retreat',
-    number: '005',
-    title: 'Pine Island',
-    subtitle: 'Retreat',
-    location: 'Pine Island, Florida',
-    year: '2022',
-    type: 'Residence',
-    status: 'Built',
-    area: '3,800 sf',
-    description:
-      'A compact retreat on the Gulf Coast designed to withstand hurricane conditions while achieving a quality of lightness and openness.',
-    longDescription:
-      'The structural constraints of coastal construction — elevated slab, hurricane glazing, impact resistance — were treated not as limitations but as the generative logic of the design. The house sits on pilots that acknowledge the flood plain and frame views of the mangrove preserve below.',
-    tags: ['Gulf Coast', 'Elevated', 'Sustainable', 'Compact'],
-    featured: false,
-    coverColor: '#c4c0b8',
-  },
-  {
-    id: 'brickell-tower',
-    number: '006',
-    title: 'Brickell',
-    subtitle: 'Tower',
-    location: 'Brickell, Miami',
-    year: '2021',
-    type: 'Development',
-    status: 'Under Construction',
-    area: '280,000 sf',
-    description:
-      'A 32-story residential tower in Miami\'s financial district. The tower\'s faceted facade responds to solar orientation while creating a distinctive skyline presence.',
-    longDescription:
-      'The tower section is organized around a double-height amenity floor at the midpoint — a sky lobby that interrupts the vertical repetition of a typical residential tower. Below: standard floor plans with city views. Above: larger residences with terrace access and unobstructed bay views.',
-    tags: ['Tower', 'High-rise', 'Mixed-use', 'Facade'],
-    featured: false,
-    coverColor: '#bbb8b0',
+    coverImage: '/images/projects/house-04/01.JPG',
+    images: [
+      '/images/projects/house-04/01.JPG',
+      '/images/projects/house-04/02.JPG',
+    ],
   },
 ]
 

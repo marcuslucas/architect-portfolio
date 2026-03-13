@@ -2,9 +2,9 @@
 
 import { motion, useInView } from 'framer-motion'
 import { useRef } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { getFeaturedProject } from '@/lib/projects'
-import ArchDrawing from '@/components/ui/ArchDrawing'
 
 export default function FeaturedProject() {
   const ref = useRef(null)
@@ -37,34 +37,14 @@ export default function FeaturedProject() {
             background: project.coverColor,
           }}
         >
-          {/* Architectural drawing placeholder — replace with <Image> when photos available */}
-          <div
-            className="grid-bg-fine"
-            style={{
-              position: 'absolute',
-              inset: 0,
-              background: `linear-gradient(145deg, ${project.coverColor} 0%, ${project.coverColor}cc 100%)`,
-            }}
+          <Image
+            src={project.coverImage}
+            alt={project.title}
+            fill
+            sizes="(max-width: 900px) 100vw, 58vw"
+            style={{ objectFit: 'cover' }}
+            priority
           />
-          <ArchDrawing variant="elevation" />
-
-          {/* Photo placeholder label */}
-          <div
-            style={{
-              position: 'absolute',
-              top: '24px',
-              left: '24px',
-              fontFamily: 'var(--font-cormorant)',
-              fontWeight: 300,
-              fontSize: '9px',
-              letterSpacing: '0.2em',
-              textTransform: 'uppercase',
-              color: 'var(--ink)',
-              opacity: 0.25,
-            }}
-          >
-            South Elevation · 1:200
-          </div>
         </motion.div>
 
         {/* Info side */}

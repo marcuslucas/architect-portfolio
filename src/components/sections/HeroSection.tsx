@@ -1,228 +1,125 @@
 'use client'
 
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import InsleyGrid from '@/components/ui/InsleyGrid'
+import { useRef } from 'react'
+import Image from 'next/image'
+import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 
 export default function HeroSection() {
+  const sectionRef = useRef<HTMLElement>(null)
+  const { scrollY } = useScroll()
+  const reducedMotion = useReducedMotion()
+
+  const scrollOpacity = useTransform(scrollY, [0, 100], [1, 0])
+
+  const ease = [0.25, 0.46, 0.45, 0.94] as const
+
   return (
     <section
+      ref={sectionRef}
       style={{
         position: 'relative',
         height: '100vh',
-        minHeight: '680px',
+        minHeight: '640px',
         overflow: 'hidden',
-        display: 'flex',
-        alignItems: 'flex-end',
-        padding: '0 48px 72px',
       }}
     >
-      {/* Background layers */}
-      <div style={{ position: 'absolute', inset: 0 }}>
-        <InsleyGrid opacity={1} variant="hero" />
+      {/* Full-bleed background image */}
+      <Image
+        src="/images/projects/house-01/01.JPG"
+        alt="Dustin Brady Architecture"
+        fill
+        style={{ objectFit: 'cover', objectPosition: 'center' }}
+        priority
+      />
 
-        {/* Vignette fade to bottom */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background:
-              'linear-gradient(to bottom, rgba(250,248,244,0) 0%, rgba(250,248,244,0) 55%, rgba(250,248,244,0.95) 100%)',
-            zIndex: 2,
-          }}
-        />
-      </div>
-
-      {/* Glass panel — right side coordinate annotation */}
+      {/* Gradient overlay — darkens bottom only */}
       <div
         style={{
           position: 'absolute',
-          top: '50%',
-          right: '80px',
-          transform: 'translateY(-50%)',
-          width: '240px',
-          height: '300px',
-          background: 'rgba(244,241,234,0.04)',
-          border: '0.5px solid rgba(26,25,22,0.1)',
-          backdropFilter: 'blur(4px)',
-          zIndex: 5,
-          pointerEvents: 'none',
+          inset: 0,
+          zIndex: 1,
+          background: 'linear-gradient(to top, rgba(26,25,22,0.55) 0%, rgba(26,25,22,0.0) 50%)',
         }}
-      >
-        <div
-          style={{
-            position: 'absolute',
-            inset: '10px',
-            border: '0.5px solid rgba(26,25,22,0.06)',
-          }}
-        />
-        {/* Coordinate annotation */}
-        <div
-          style={{
-            position: 'absolute',
-            bottom: '16px',
-            left: '16px',
-            right: '16px',
-          }}
-        >
-          {['N 25° 47\' 26.3"', 'W 80° 11\' 30.2"', '', 'Miami, Florida'].map(
-            (line, i) => (
-              <span
-                key={i}
-                style={{
-                  display: 'block',
-                  fontFamily: 'var(--font-cormorant)',
-                  fontWeight: 300,
-                  fontSize: '9px',
-                  letterSpacing: '0.14em',
-                  color: 'var(--ink)',
-                  opacity: 0.3,
-                  lineHeight: 1.9,
-                  marginTop: i === 2 ? '8px' : 0,
-                }}
-              >
-                {line}
-              </span>
-            )
-          )}
-        </div>
-      </div>
+      />
 
-      {/* Top-right coordinate marker — Insley annotation style */}
+      {/* Firm name — bottom-left */}
       <div
         style={{
           position: 'absolute',
-          top: '88px',
-          right: '48px',
-          zIndex: 10,
-          textAlign: 'right',
-          pointerEvents: 'none',
+          bottom: '56px',
+          left: '56px',
+          zIndex: 2,
         }}
+        className="hero-text"
       >
-        {['Grid Ref. 001 — 024', 'BRADY ARCHITECTURE', 'Est. MMXI'].map(
-          (text, i) => (
-            <span
-              key={i}
-              style={{
-                display: 'block',
-                fontFamily: 'var(--font-cormorant)',
-                fontWeight: 300,
-                fontSize: '9px',
-                letterSpacing: '0.14em',
-                color: 'var(--ink)',
-                opacity: 0.2,
-                lineHeight: 1.8,
-              }}
-            >
-              {text}
-            </span>
-          )
-        )}
-      </div>
-
-      {/* Hero text content */}
-      <div style={{ position: 'relative', zIndex: 10, maxWidth: '640px' }}>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
+        <motion.span
+          initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: reducedMotion ? 0 : 0.8, ease }}
           style={{
-            display: 'flex',
-            alignItems: 'center',
-            gap: '16px',
-            marginBottom: '24px',
-          }}
-        >
-          <span
-            style={{
-              display: 'inline-block',
-              width: '32px',
-              height: '0.5px',
-              background: 'var(--ink)',
-              opacity: 0.35,
-            }}
-          />
-          <span
-            style={{
-              fontFamily: 'var(--font-cormorant)',
-              fontWeight: 300,
-              fontSize: '10px',
-              letterSpacing: '0.28em',
-              textTransform: 'uppercase',
-              color: 'var(--ink)',
-              opacity: 0.5,
-            }}
-          >
-            Contemporary Architecture · Florida
-          </span>
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, delay: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-          style={{
+            display: 'block',
             fontFamily: 'var(--font-cormorant)',
             fontWeight: 300,
-            fontSize: 'clamp(52px, 7vw, 96px)',
-            lineHeight: 1.0,
-            letterSpacing: '-0.01em',
-            color: 'var(--ink)',
-            marginBottom: '28px',
+            fontSize: 'clamp(72px, 10vw, 160px)',
+            lineHeight: 0.9,
+            letterSpacing: '-0.02em',
+            color: 'var(--vellum)',
           }}
         >
-          Space
-          <br />
-          <em>as intention</em>
-        </motion.h1>
+          Dustin Brady
+        </motion.span>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
+        <motion.span
+          initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.7, ease: [0.25, 0.46, 0.45, 0.94] }}
+          transition={{ duration: reducedMotion ? 0 : 0.8, delay: reducedMotion ? 0 : 0.1, ease }}
           style={{
+            display: 'block',
             fontFamily: 'var(--font-cormorant)',
             fontWeight: 300,
-            fontSize: '17px',
-            lineHeight: 1.65,
-            color: 'var(--ink)',
+            fontSize: 'clamp(72px, 10vw, 160px)',
+            lineHeight: 0.9,
+            letterSpacing: '-0.02em',
+            color: 'var(--vellum)',
+          }}
+        >
+          Architecture
+        </motion.span>
+
+        <motion.span
+          initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: reducedMotion ? 0 : 0.8, delay: reducedMotion ? 0 : 0.2, ease }}
+          style={{
+            display: 'block',
+            marginTop: '16px',
+            fontFamily: 'var(--font-cormorant)',
+            fontWeight: 300,
+            fontSize: '10px',
+            letterSpacing: '0.28em',
+            textTransform: 'uppercase',
+            color: 'var(--vellum)',
             opacity: 0.6,
-            maxWidth: '400px',
-            marginBottom: '48px',
           }}
         >
-          Designing singular residences and developments where structure,
-          light, and landscape converge into an enduring whole.
-        </motion.p>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.9, ease: [0.25, 0.46, 0.45, 0.94] }}
-          style={{ display: 'flex', alignItems: 'center', gap: '40px' }}
-        >
-          <Link href="/projects" className="btn-primary">
-            View Projects
-          </Link>
-          <Link href="/process" className="btn-outline">
-            <span className="arrow-line" />
-            Our Process
-          </Link>
-        </motion.div>
+          Contemporary Architecture · Florida
+        </motion.span>
       </div>
 
-      {/* Scroll indicator */}
-      <div
+      {/* Scroll indicator — bottom-center, fades on scroll */}
+      <motion.div
+        className="scroll-indicator"
         style={{
           position: 'absolute',
-          right: '48px',
-          bottom: '72px',
-          zIndex: 10,
+          bottom: '40px',
+          left: '50%',
+          transform: 'translateX(-50%)',
+          zIndex: 2,
+          opacity: reducedMotion ? 0.4 : scrollOpacity,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '12px',
-          opacity: 0.35,
+          gap: '8px',
         }}
       >
         <span
@@ -230,33 +127,20 @@ export default function HeroSection() {
             fontFamily: 'var(--font-cormorant)',
             fontWeight: 300,
             fontSize: '9px',
-            letterSpacing: '0.22em',
+            letterSpacing: '0.3em',
             textTransform: 'uppercase',
+            color: 'var(--vellum)',
             writingMode: 'vertical-rl',
-            color: 'var(--ink)',
           }}
         >
           Scroll
         </span>
-        <div
-          style={{
-            width: '0.5px',
-            height: '48px',
-            background: 'var(--ink)',
-            animation: 'scrollPulse 2s infinite',
-          }}
-        />
-      </div>
+      </motion.div>
 
       <style>{`
-        @keyframes scrollPulse {
-          0%, 100% { opacity: 0.3; transform: scaleY(0.5); transform-origin: top; }
-          50% { opacity: 0.9; transform: scaleY(1); transform-origin: top; }
-        }
         @media (max-width: 768px) {
-          section { padding: 0 24px 56px !important; }
-          section > div:nth-child(2) { display: none !important; }
-          .scroll-indicator { display: none; }
+          .hero-text { left: 24px !important; bottom: 36px !important; }
+          .scroll-indicator { display: none !important; }
         }
       `}</style>
     </section>

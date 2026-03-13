@@ -2,154 +2,117 @@
 
 import Link from 'next/link'
 
-const footerLinks = [
-  { href: '/projects', label: 'Projects' },
-  { href: '/process', label: 'Process' },
-  { href: '/studio', label: 'Studio' },
-  { href: '/journal', label: 'Journal' },
-  { href: '/contact', label: 'Contact' },
+const col2Links = [
+  [
+    { href: '/projects', label: 'Portfolio' },
+    { href: '/process', label: 'Philosophy' },
+    { href: '/contact', label: 'Contact' },
+  ],
+  [
+    { href: '/studio', label: 'Studio' },
+    { href: '/journal', label: 'Journal' },
+  ],
 ]
 
 export default function Footer() {
   return (
     <footer
       style={{
-        padding: '72px 48px 48px',
-        borderTop: '0.5px solid rgba(26,25,22,0.1)',
         background: 'var(--warm)',
+        borderTop: '0.5px solid rgba(26,25,22,0.08)',
+        padding: '72px 56px 40px',
       }}
     >
+      {/* Three-column grid */}
       <div
+        className="footer-grid"
         style={{
           display: 'grid',
           gridTemplateColumns: '1.2fr 1fr 1fr',
           gap: '40px',
-          marginBottom: '64px',
+          marginBottom: '56px',
         }}
       >
-        {/* Brand */}
+        {/* Col 1 — Brand */}
         <div>
           <div
             style={{
               fontFamily: 'var(--font-cormorant)',
               fontWeight: 300,
-              fontSize: '14px',
-              letterSpacing: '0.22em',
+              fontSize: '18px',
+              letterSpacing: '0.12em',
               textTransform: 'uppercase',
               color: 'var(--ink)',
-              marginBottom: '12px',
+              lineHeight: 1.3,
             }}
           >
-            Dustin Brady
+            <span style={{ display: 'block' }}>Dustin Brady</span>
+            <span style={{ display: 'block' }}>Architecture</span>
           </div>
-          <p
-            style={{
-              fontFamily: 'var(--font-cormorant)',
-              fontWeight: 300,
-              fontStyle: 'italic',
-              fontSize: '15px',
-              color: 'var(--ink)',
-              opacity: 0.45,
-              lineHeight: 1.6,
-              maxWidth: '280px',
-            }}
-          >
-            Architecture &amp; Design<br />
-            Miami — Naples — Palm Beach
-          </p>
         </div>
 
-        {/* Navigation */}
-        <div>
-          <div
-            style={{
-              fontFamily: 'var(--font-cormorant)',
-              fontWeight: 300,
-              fontSize: '10px',
-              letterSpacing: '0.24em',
-              textTransform: 'uppercase',
-              opacity: 0.35,
-              marginBottom: '20px',
-            }}
-          >
-            Navigation
-          </div>
-          <ul style={{ listStyle: 'none', padding: 0 }}>
-            {footerLinks.map((link) => (
-              <li key={link.href} style={{ marginBottom: '10px' }}>
+        {/* Col 2 — Nav links (two sub-columns) */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: '1fr 1fr',
+            gap: '8px 16px',
+          }}
+        >
+          {col2Links.map((col, ci) => (
+            <div key={ci} style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
+              {col.map((link) => (
                 <Link
+                  key={link.href}
                   href={link.href}
+                  className="footer-link"
                   style={{
                     fontFamily: 'var(--font-cormorant)',
                     fontWeight: 300,
-                    fontSize: '15px',
+                    fontSize: '11px',
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase',
                     color: 'var(--ink)',
                     textDecoration: 'none',
-                    opacity: 0.55,
-                    transition: 'opacity 0.3s',
+                    opacity: 0.5,
+                    transition: 'opacity 200ms ease',
                   }}
-                  onMouseEnter={(e) =>
-                    ((e.target as HTMLElement).style.opacity = '1')
-                  }
-                  onMouseLeave={(e) =>
-                    ((e.target as HTMLElement).style.opacity = '0.55')
-                  }
                 >
                   {link.label}
                 </Link>
-              </li>
-            ))}
-          </ul>
+              ))}
+            </div>
+          ))}
         </div>
 
-        {/* Contact */}
-        <div>
-          <div
+        {/* Col 3 — Contact */}
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
+          <a
+            href="mailto:info@bradyarchitecture.com"
+            className="footer-link"
             style={{
               fontFamily: 'var(--font-cormorant)',
               fontWeight: 300,
-              fontSize: '10px',
-              letterSpacing: '0.24em',
-              textTransform: 'uppercase',
-              opacity: 0.35,
-              marginBottom: '20px',
-            }}
-          >
-            Studio
-          </div>
-          <address
-            style={{
-              fontFamily: 'var(--font-cormorant)',
-              fontWeight: 300,
-              fontStyle: 'normal',
-              fontSize: '14px',
-              lineHeight: 1.8,
+              fontSize: '13px',
               color: 'var(--ink)',
-              opacity: 0.45,
+              textDecoration: 'none',
+              opacity: 0.5,
+              transition: 'opacity 200ms ease',
             }}
           >
-            262 NE 2nd Street<br />
-            Miami, Florida 33132<br />
-            <br />
-            <a
-              href="mailto:studio@bradyarchitecture.com"
-              style={{
-                color: 'inherit',
-                textDecoration: 'none',
-                borderBottom: '0.5px solid rgba(26,25,22,0.2)',
-                paddingBottom: '1px',
-              }}
-            >
-              studio@bradyarchitecture.com
-            </a>
-            <br />
-            <a
-              href="tel:+13055550190"
-              style={{ color: 'inherit', textDecoration: 'none' }}
-            >
-              +1 (305) 555 0190
-            </a>
-          </address>
+            info@bradyarchitecture.com
+          </a>
+          <span
+            style={{
+              fontFamily: 'var(--font-cormorant)',
+              fontWeight: 300,
+              fontSize: '13px',
+              color: 'var(--ink)',
+              opacity: 0.5,
+            }}
+          >
+            Miami, Florida
+          </span>
         </div>
       </div>
 
@@ -159,46 +122,56 @@ export default function Footer() {
           display: 'flex',
           justifyContent: 'space-between',
           alignItems: 'center',
-          paddingTop: '32px',
-          borderTop: '0.5px solid rgba(26,25,22,0.08)',
           flexWrap: 'wrap',
           gap: '12px',
+          paddingTop: '32px',
+          borderTop: '0.5px solid rgba(26,25,22,0.08)',
         }}
       >
         <span
           style={{
             fontFamily: 'var(--font-cormorant)',
             fontWeight: 300,
-            fontSize: '11px',
-            letterSpacing: '0.1em',
+            fontSize: '10px',
+            letterSpacing: '0.18em',
             color: 'var(--ink)',
-            opacity: 0.3,
+            opacity: 0.4,
           }}
         >
-          © {new Date().getFullYear()} Brady Architecture. All rights reserved.
+          © {new Date().getFullYear()} Dustin Brady Architecture
         </span>
         <span
           style={{
             fontFamily: 'var(--font-cormorant)',
             fontWeight: 300,
             fontStyle: 'italic',
-            fontSize: '12px',
+            fontSize: '10px',
+            letterSpacing: '0.18em',
             color: 'var(--ink)',
-            opacity: 0.2,
+            opacity: 0.4,
           }}
         >
-          "to contain spatial situations sympathetic to the horizon line"
+          "to contain spatial situations sympathetic to the horizon line."
+        </span>
+        <span
+          style={{
+            fontFamily: 'var(--font-cormorant)',
+            fontWeight: 300,
+            fontSize: '10px',
+            letterSpacing: '0.18em',
+            color: 'var(--ink)',
+            opacity: 0.4,
+          }}
+        >
+          Privacy
         </span>
       </div>
 
       <style>{`
+        .footer-link:hover { opacity: 1 !important; }
         @media (max-width: 768px) {
-          footer > div:first-child {
-            grid-template-columns: 1fr !important;
-          }
-          footer {
-            padding: 48px 24px 40px !important;
-          }
+          .footer-grid { grid-template-columns: 1fr !important; }
+          footer { padding: 48px 24px 32px !important; }
         }
       `}</style>
     </footer>

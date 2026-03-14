@@ -78,10 +78,7 @@ export default function ProcessSection() {
       <div className="section-label">How We Work</div>
 
       <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
-        }}
+        className="process-grid"
       >
         {steps.map((step, i) => (
           <motion.div
@@ -148,14 +145,21 @@ export default function ProcessSection() {
       </div>
 
       <style>{`
+        .process-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+        }
         @media (max-width: 900px) {
-          section > div:last-child {
+          .process-grid {
             grid-template-columns: 1fr 1fr !important;
             gap: 48px !important;
           }
         }
         @media (max-width: 600px) {
-          section > div:last-child { grid-template-columns: 1fr !important; }
+          .process-grid {
+            grid-template-columns: 1fr !important;
+            gap: 40px !important;
+          }
           section { padding: 80px 24px !important; }
         }
       `}</style>

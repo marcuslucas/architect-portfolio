@@ -78,7 +78,7 @@ export default function ProjectDetailPage({
         </section>
 
         {/* Project intro */}
-        <section style={{ padding: '80px 48px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', borderBottom: '0.5px solid rgba(26,25,22,0.08)' }}>
+        <section className="project-intro" style={{ padding: '80px 48px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', borderBottom: '0.5px solid rgba(26,25,22,0.08)' }}>
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
             <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '22px', lineHeight: 1.6, color: 'var(--ink)' }}>
               {project.description}
@@ -108,7 +108,7 @@ export default function ProjectDetailPage({
         {/* Photo gallery */}
         <section style={{ padding: '80px 48px' }}>
           <div className="section-label">Photography</div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5px', background: 'rgba(26,25,22,0.07)' }}>
+          <div className="project-gallery-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1.5px', background: 'rgba(26,25,22,0.07)' }}>
             {project.images.map((src, i) => (
               <div key={src} style={{ position: 'relative', aspectRatio: '4/3', overflow: 'hidden', background: project.coverColor }}>
                 <Image
@@ -131,6 +131,7 @@ export default function ProjectDetailPage({
             </span>
             <Link
               href={`/projects/${nextProject.id}`}
+              className="next-project-link"
               style={{
                 display: 'flex',
                 alignItems: 'center',
@@ -161,7 +162,9 @@ export default function ProjectDetailPage({
       <style>{`
         @media (max-width: 768px) {
           section { padding-left: 24px !important; padding-right: 24px !important; }
-          section[style*="grid-template-columns: '1fr 1fr'"] { grid-template-columns: 1fr !important; }
+          .project-intro { grid-template-columns: 1fr !important; gap: 40px !important; padding-top: 48px !important; padding-bottom: 48px !important; }
+          .project-gallery-grid { grid-template-columns: 1fr !important; }
+          .next-project-link { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
         }
       `}</style>
     </>

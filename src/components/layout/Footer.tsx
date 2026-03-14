@@ -141,6 +141,7 @@ export default function Footer() {
           © {new Date().getFullYear()} Dustin Brady Architecture
         </span>
         <span
+          className="footer-quote"
           style={{
             fontFamily: 'var(--font-cormorant)',
             fontWeight: 300,
@@ -181,6 +182,7 @@ export default function Footer() {
         @media (max-width: 768px) {
           .footer-wrapper { padding: 48px 24px 32px !important; }
           .footer-grid { grid-template-columns: 1fr !important; }
+          .footer-quote { display: none !important; }
         }
       `}</style>
     </footer>

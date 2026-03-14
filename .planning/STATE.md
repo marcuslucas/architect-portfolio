@@ -3,8 +3,8 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Quick task 1 complete — ProcessSection and studio/page grids mobile-responsive, human-verified
-last_updated: "2026-03-14T14:14:39.478Z"
+stopped_at: Quick task 3 complete — InsleyGrid hero opacity normalized, Enquire/Enquiry spelling corrected
+last_updated: "2026-03-14T14:34:24Z"
 last_activity: 2026-03-14 — Roadmap created
 progress:
   total_phases: 2
@@ -78,9 +78,10 @@ None yet.
 | # | Name | Commits | Completed |
 |---|------|---------|-----------|
 | 1 | How We Work and Team section mobile collapse | 2d4bc3f, f949db2 | 2026-03-14 |
+| 3 | Insley background design on journal/philosophy + spelling fix | 242bc9f, b040d7a | 2026-03-14 |
 
 ## Session Continuity
 
-Last session: 2026-03-14T14:12:20.400Z
-Stopped at: Quick task 1 complete — ProcessSection and studio/page grids mobile-responsive, human-verified
+Last session: 2026-03-14T14:34:24Z
+Stopped at: Quick task 3 complete — InsleyGrid hero opacity normalized, Enquire/Enquiry spelling corrected
 Resume file: None

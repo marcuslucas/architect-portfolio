@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-03-14)
 Phase: 1 of 2 (Mobile Overflow)
 Plan: 0 of ? in current phase
 Status: Ready to plan
-Last activity: 2026-03-14 — Roadmap created
+Last activity: 2026-03-14 - Completed quick task 3: Insley Background design on Journal, Philosophy, and Studio pages are all placed differenty. Make them the same placement on each page. Change any instance of Enquire to Inquire
 
 Progress: [█████░░░░░] 50%
 

@@ -49,7 +49,7 @@ export default function StudioPage() {
         </section>
 
         {/* Studio statement */}
-        <section style={{ padding: '80px 48px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', borderTop: '0.5px solid rgba(26,25,22,0.08)', borderBottom: '0.5px solid rgba(26,25,22,0.08)' }}>
+        <section className="studio-statement" style={{ padding: '80px 48px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', borderTop: '0.5px solid rgba(26,25,22,0.08)', borderBottom: '0.5px solid rgba(26,25,22,0.08)' }}>
           <div>
             <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '17px', lineHeight: 1.8, opacity: 0.65 }}>
               Our approach is grounded in a single conviction: that architecture is the art of organizing space to serve the full range of human experience — not merely the functional, but the poetic, the contemplative, the quietly extraordinary.
@@ -68,7 +68,7 @@ export default function StudioPage() {
         {/* Team */}
         <section style={{ padding: '100px 48px' }}>
           <div className="section-label">The Team</div>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5px', background: 'rgba(26,25,22,0.07)' }}>
+          <div className="team-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5px', background: 'rgba(26,25,22,0.07)' }}>
             {team.map((member) => (
               <div key={member.name} style={{ background: 'var(--pale)', padding: '40px 32px', borderRadius: '12px' }}>
                 {/* Avatar placeholder */}
@@ -111,6 +111,10 @@ export default function StudioPage() {
       <style>{`
         @media (max-width: 900px) {
           section { padding-left: 24px !important; padding-right: 24px !important; }
+          .studio-statement { grid-template-columns: 1fr !important; gap: 40px !important; }
+        }
+        @media (max-width: 600px) {
+          .team-grid { grid-template-columns: 1fr !important; }
         }
       `}</style>
     </>

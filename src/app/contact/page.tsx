@@ -44,7 +44,7 @@ export default function ContactPage() {
       <Navigation />
       <main>
         {/* Header */}
-        <section style={{ position: 'relative', padding: '180px 48px 80px', overflow: 'hidden' }}>
+        <section className="page-hero" style={{ position: 'relative', padding: '180px 48px 80px', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0 }}>
             <InsleyGrid variant="hero" opacity={0.4} />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 40%, var(--warm) 100%)' }} />

@@ -213,6 +213,17 @@ a {
   width: 56px;
 }
 
+/* ─── Page Hero ─── */
+/* Inner-page hero sections share this class for consistent mobile padding */
+@media (max-width: 768px) {
+  .page-hero {
+    padding-top: 110px !important;
+    padding-bottom: 56px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+}
+
 /* ─── Page Transition ─── */
 .page-enter {
   opacity: 0;

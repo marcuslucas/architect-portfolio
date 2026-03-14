@@ -13,7 +13,7 @@ export default function ProcessPage() {
       <Navigation />
       <main>
         {/* Header */}
-        <section style={{ position: 'relative', padding: '180px 48px 100px', overflow: 'hidden' }}>
+        <section className="page-hero" style={{ position: 'relative', padding: '180px 48px 100px', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0 }}>
             <InsleyGrid variant="hero" opacity={0.5} />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 50%, var(--warm) 100%)' }} />

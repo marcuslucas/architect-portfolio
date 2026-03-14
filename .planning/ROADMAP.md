@@ -27,7 +27,11 @@ Decimal phases appear between their surrounding integers in numeric order.
   3. The Projects page grid and filter controls are fully contained within a mobile viewport
   4. A project detail page renders without any content pushed off-screen on mobile
   5. No element on any page causes the viewport to extend beyond its natural width on mobile
-**Plans**: TBD
+**Plans**: 2 plans
+
+Plans:
+- [ ] 01-01-PLAN.md — Global overflow containment + homepage/nav/footer mobile fixes (MOB-01, MOB-02, MOB-03)
+- [ ] 01-02-PLAN.md — Projects gallery page + project detail page mobile fixes (MOB-04, MOB-05)
 
 ### Phase 2: Scroll Reset
 **Goal**: Users always land at the top of a page when navigating to any route
@@ -46,5 +50,5 @@ Phases execute in numeric order: 1 → 2
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Mobile Overflow | 0/? | Not started | - |
+| 1. Mobile Overflow | 0/2 | Planned | - |
 | 2. Scroll Reset | 0/? | Not started | - |

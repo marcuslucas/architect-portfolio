@@ -43,7 +43,7 @@ export default function JournalPage() {
       <main>
         <section className="page-hero" style={{ position: 'relative', padding: '180px 48px 80px', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0 }}>
-            <InsleyGrid variant="hero" opacity={0.4} />
+            <InsleyGrid variant="hero" opacity={0.5} />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 50%, var(--warm) 100%)' }} />
           </div>
           <div style={{ position: 'relative', zIndex: 2 }}>

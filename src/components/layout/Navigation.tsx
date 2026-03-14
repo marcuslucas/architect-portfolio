@@ -62,6 +62,7 @@ export default function Navigation() {
         initial={skipInitial || reducedMotion ? false : { y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
+        className="nav-bar"
         style={{
           position: 'fixed',
           top: 0,
@@ -231,7 +232,7 @@ export default function Navigation() {
         @media (max-width: 768px) {
           .nav-desktop { display: none !important; }
           .nav-hamburger { display: block !important; }
-          nav[style] { padding-left: 24px !important; padding-right: 24px !important; }
+          .nav-bar { padding-left: 24px !important; padding-right: 24px !important; }
         }
       `}</style>
     </>

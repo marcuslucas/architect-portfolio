@@ -73,8 +73,14 @@ None yet.
 - Inline `style` props dominate layout sizing; utility-class audits will miss overflow sources — must inspect computed widths in browser or trace inline styles manually
 - InsleyGrid SVG uses absolute positioning and may be an overflow contributor — audit it in Phase 1
 
+## Quick Tasks Completed
+
+| # | Name | Commits | Completed |
+|---|------|---------|-----------|
+| 1 | How We Work and Team section mobile collapse | 2d4bc3f, f949db2 | 2026-03-14 |
+
 ## Session Continuity
 
 Last session: 2026-03-14T14:12:20.400Z
-Stopped at: Completed 01-02: project pages mobile overflow
+Stopped at: Quick task 1 complete — ProcessSection and studio/page grids mobile-responsive, human-verified
 Resume file: None

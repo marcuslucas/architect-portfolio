@@ -59,7 +59,7 @@ export default function ProcessPage() {
             Every project starts with a question.
           </h2>
           <Link href="/contact" className="btn-primary">
-            Enquire About Your Project
+            Inquire About Your Project
           </Link>
         </section>
       </main>

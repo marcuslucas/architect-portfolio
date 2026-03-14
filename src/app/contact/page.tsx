@@ -56,7 +56,7 @@ export default function ContactPage() {
                 <span style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '10px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.45 }}>Get in Touch</span>
               </div>
               <h1 style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 1.0 }}>
-                Enquire About<br /><em>Your Project</em>
+                Inquire About<br /><em>Your Project</em>
               </h1>
             </motion.div>
           </div>
@@ -142,7 +142,7 @@ export default function ContactPage() {
                 </div>
 
                 <button type="submit" className="btn-primary" style={{ cursor: 'pointer' }}>
-                  Send Enquiry
+                  Send Inquiry
                 </button>
               </form>
             )}

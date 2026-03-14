@@ -12,7 +12,7 @@ Two focused bug-fix phases deliver the core value: a portfolio that works flawle
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Mobile Overflow** - Eliminate horizontal scrollbar and off-screen content on 360–430px viewports across all pages
+- [x] **Phase 1: Mobile Overflow** - Eliminate horizontal scrollbar and off-screen content on 360–430px viewports across all pages (completed 2026-03-14)
 - [ ] **Phase 2: Scroll Reset** - Reset scroll position to top on every page navigation, including browser back/forward
 
 ## Phase Details
@@ -50,5 +50,5 @@ Phases execute in numeric order: 1 → 2
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Mobile Overflow | 1/2 | In Progress|  |
+| 1. Mobile Overflow | 2/2 | Complete   | 2026-03-14 |
 | 2. Scroll Reset | 0/? | Not started | - |

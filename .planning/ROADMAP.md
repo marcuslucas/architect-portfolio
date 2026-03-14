@@ -50,5 +50,5 @@ Phases execute in numeric order: 1 → 2
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Mobile Overflow | 0/2 | Planned | - |
+| 1. Mobile Overflow | 1/2 | In Progress|  |
 | 2. Scroll Reset | 0/? | Not started | - |

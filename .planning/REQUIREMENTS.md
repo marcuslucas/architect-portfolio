@@ -10,8 +10,8 @@
 - [ ] **MOB-01**: All pages show no horizontal scrollbar on 360–430px viewport widths
 - [ ] **MOB-02**: No content is clipped or hidden off-screen on 360–430px widths
 - [ ] **MOB-03**: Homepage sections (Hero, Tagline, Grid, Philosophy, Footer) are fully contained within viewport width on mobile
-- [ ] **MOB-04**: Projects page grid and filter controls fit within mobile viewport without overflow
-- [ ] **MOB-05**: Project detail page content is fully contained on mobile
+- [x] **MOB-04**: Projects page grid and filter controls fit within mobile viewport without overflow
+- [x] **MOB-05**: Project detail page content is fully contained on mobile
 
 ### Navigation
 
@@ -41,8 +41,8 @@
 | MOB-01 | Phase 1 | Pending |
 | MOB-02 | Phase 1 | Pending |
 | MOB-03 | Phase 1 | Pending |
-| MOB-04 | Phase 1 | Pending |
-| MOB-05 | Phase 1 | Pending |
+| MOB-04 | Phase 1 | Complete |
+| MOB-05 | Phase 1 | Complete |
 | NAV-01 | Phase 2 | Pending |
 | NAV-02 | Phase 2 | Pending |
 

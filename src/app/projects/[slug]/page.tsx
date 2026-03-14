@@ -7,7 +7,7 @@ import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Navigation from '@/components/layout/Navigation'
 import Footer from '@/components/layout/Footer'
-import { getProjectById, projects } from '@/lib/projects'
+import { getProjectById } from '@/lib/projects'
 
 export default function ProjectDetailPage({
   params,
@@ -17,9 +17,6 @@ export default function ProjectDetailPage({
   const { slug } = use(params)
   const project = getProjectById(slug)
   if (!project) notFound()
-
-  const projectIndex = projects.findIndex((p) => p.id === slug)
-  const nextProject = projects[(projectIndex + 1) % projects.length]
 
   return (
     <>
@@ -123,37 +120,12 @@ export default function ProjectDetailPage({
           </div>
         </section>
 
-        {/* Next project */}
+        {/* Back to portfolio */}
         <section style={{ padding: '0 48px 120px' }}>
           <div style={{ borderTop: '0.5px solid rgba(26,25,22,0.1)', paddingTop: '48px' }}>
-            <span style={{ display: 'block', fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '10px', letterSpacing: '0.26em', textTransform: 'uppercase', opacity: 0.35, marginBottom: '24px' }}>
-              Next Project
-            </span>
-            <Link
-              href={`/projects/${nextProject.id}`}
-              className="next-project-link"
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                textDecoration: 'none',
-                color: 'var(--ink)',
-                padding: '32px 0',
-                borderBottom: '0.5px solid rgba(26,25,22,0.1)',
-                transition: 'opacity 0.3s',
-              }}
-            >
-              <div>
-                <div style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: 'clamp(24px, 4vw, 48px)', lineHeight: 1.05 }}>
-                  {nextProject.title}{nextProject.subtitle && <><br /><em>{nextProject.subtitle}</em></>}
-                </div>
-                <span style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '13px', letterSpacing: '0.1em', opacity: 0.4 }}>
-                  {nextProject.location} · {nextProject.year}
-                </span>
-              </div>
-              <span style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '11px', letterSpacing: '0.2em', textTransform: 'uppercase', display: 'flex', alignItems: 'center', gap: '12px', opacity: 0.45 }}>
-                View <span style={{ display: 'inline-block', width: '40px', height: '0.5px', background: 'var(--ink)' }} />
-              </span>
+            <Link href="/projects" className="btn-outline">
+              <span className="arrow-line" style={{ transform: 'scaleX(-1)' }} />
+              Back to Portfolio
             </Link>
           </div>
         </section>
@@ -164,7 +136,6 @@ export default function ProjectDetailPage({
           section { padding-left: 24px !important; padding-right: 24px !important; }
           .project-intro { grid-template-columns: 1fr !important; gap: 40px !important; padding-top: 48px !important; padding-bottom: 48px !important; }
           .project-gallery-grid { grid-template-columns: 1fr !important; }
-          .next-project-link { flex-direction: column !important; align-items: flex-start !important; gap: 16px !important; }
         }
       `}</style>
     </>

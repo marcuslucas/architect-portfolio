@@ -29,10 +29,10 @@ export default function StudioPage() {
         {/* Header */}
         <section className="page-hero" style={{ position: 'relative', padding: '180px 48px 100px', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0 }}>
-            <InsleyGrid variant="hero" opacity={0.5} />
+            <InsleyGrid variant="elevation" opacity={0.5} />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 50%, var(--warm) 100%)' }} />
           </div>
-          <div style={{ position: 'relative', zIndex: 2, maxWidth: '720px' }}>
+          <div style={{ position: 'relative', zIndex: 2, maxWidth: '900px' }}>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
                 <span style={{ display: 'inline-block', width: '28px', height: '0.5px', background: 'var(--ink)', opacity: 0.3 }} />
@@ -49,19 +49,21 @@ export default function StudioPage() {
         </section>
 
         {/* Studio statement */}
-        <section className="studio-statement" style={{ padding: '80px 48px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px', borderTop: '0.5px solid rgba(26,25,22,0.08)', borderBottom: '0.5px solid rgba(26,25,22,0.08)' }}>
-          <div>
-            <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '17px', lineHeight: 1.8, opacity: 0.65 }}>
-              Our approach is grounded in a single conviction: that architecture is the art of organizing space to serve the full range of human experience — not merely the functional, but the poetic, the contemplative, the quietly extraordinary.
-            </p>
-          </div>
-          <div>
-            <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '17px', lineHeight: 1.8, opacity: 0.65, marginBottom: '28px' }}>
-              We work selectively, with a small number of clients each year, to maintain the quality of attention that our projects require. Each commission is a sustained investigation — of site, program, and the particular life the building will frame.
-            </p>
-            <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '17px', lineHeight: 1.8, opacity: 0.65 }}>
-              Florida's architecture demands a specific response to its light, its landscape, and its relationship to water. We have dedicated our practice to understanding and working within these conditions.
-            </p>
+        <section className="studio-statement" style={{ padding: '80px 48px', borderTop: '0.5px solid rgba(26,25,22,0.08)', borderBottom: '0.5px solid rgba(26,25,22,0.08)' }}>
+          <div className="wide-container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px' }}>
+            <div>
+              <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '17px', lineHeight: 1.8, opacity: 0.65 }}>
+                Our approach is grounded in a single conviction: that architecture is the art of organizing space to serve the full range of human experience — not merely the functional, but the poetic, the contemplative, the quietly extraordinary.
+              </p>
+            </div>
+            <div>
+              <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '17px', lineHeight: 1.8, opacity: 0.65, marginBottom: '28px' }}>
+                We work selectively, with a small number of clients each year, to maintain the quality of attention that our projects require. Each commission is a sustained investigation — of site, program, and the particular life the building will frame.
+              </p>
+              <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '17px', lineHeight: 1.8, opacity: 0.65 }}>
+                Florida's architecture demands a specific response to its light, its landscape, and its relationship to water. We have dedicated our practice to understanding and working within these conditions.
+              </p>
+            </div>
           </div>
         </section>
 
@@ -85,6 +87,7 @@ export default function StudioPage() {
 
         {/* Awards */}
         <section style={{ padding: '100px 48px' }}>
+          <div className="wide-container">
           <div className="section-label">Recognition</div>
           <div>
             {awards.map((award, i) => (
@@ -105,13 +108,14 @@ export default function StudioPage() {
               </div>
             ))}
           </div>
+          </div>
         </section>
       </main>
       <Footer />
       <style>{`
         @media (max-width: 900px) {
           section { padding-left: 24px !important; padding-right: 24px !important; }
-          .studio-statement { grid-template-columns: 1fr !important; gap: 40px !important; }
+          .studio-statement .wide-container { grid-template-columns: 1fr !important; gap: 40px !important; }
         }
         @media (max-width: 600px) {
           .team-grid { grid-template-columns: 1fr !important; }

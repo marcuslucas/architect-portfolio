@@ -224,6 +224,26 @@ a {
   }
 }
 
+/* ─── Wide screen (1080p+) hero scale ─── */
+@media (min-width: 1080px) {
+  .page-hero {
+    padding-left: 80px !important;
+    padding-right: 80px !important;
+  }
+  .wide-container {
+    max-width: 1400px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (min-width: 1440px) {
+  .page-hero {
+    padding-left: 120px !important;
+    padding-right: 120px !important;
+  }
+}
+
 /* ─── Page Transition ─── */
 .page-enter {
   opacity: 0;

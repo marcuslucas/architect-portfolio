@@ -43,10 +43,10 @@ export default function JournalPage() {
       <main>
         <section className="page-hero" style={{ position: 'relative', padding: '180px 48px 80px', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0 }}>
-            <InsleyGrid variant="hero" opacity={0.4} />
+            <InsleyGrid variant="opaque-city" opacity={0.4} />
             <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 50%, var(--warm) 100%)' }} />
           </div>
-          <div style={{ position: 'relative', zIndex: 2 }}>
+          <div style={{ position: 'relative', zIndex: 2, maxWidth: '900px' }}>
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.2 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: '16px', marginBottom: '20px' }}>
                 <span style={{ display: 'inline-block', width: '28px', height: '0.5px', background: 'var(--ink)', opacity: 0.3 }} />
@@ -60,6 +60,7 @@ export default function JournalPage() {
         </section>
 
         <section style={{ padding: '40px 48px 120px' }}>
+          <div className="wide-container">
           {posts.map((post, i) => (
             <motion.article
               key={i}
@@ -90,6 +91,7 @@ export default function JournalPage() {
               <span style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '11px', letterSpacing: '0.12em', opacity: 0.3, textAlign: 'right' }}>{post.readTime}</span>
             </motion.article>
           ))}
+          </div>
         </section>
       </main>
       <Footer />

@@ -27,34 +27,34 @@ export default function InsleyGrid({
     return (
       <svg style={svgStyle} viewBox="0 0 1200 480" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
         {/* Diagonal ray fans from upper left — warm terracotta */}
-        <g opacity="0.28">
-          <line x1="0" y1="0" x2="1200" y2="480" stroke="#c87060" strokeWidth="0.5"/>
-          <line x1="0" y1="0" x2="1200" y2="420" stroke="#c87060" strokeWidth="0.5"/>
-          <line x1="0" y1="0" x2="1200" y2="360" stroke="#c87060" strokeWidth="0.5"/>
-          <line x1="0" y1="0" x2="1200" y2="300" stroke="#c87060" strokeWidth="0.5"/>
-          <line x1="0" y1="0" x2="1200" y2="240" stroke="#c87060" strokeWidth="0.5"/>
-          <line x1="0" y1="0" x2="1200" y2="180" stroke="#c87060" strokeWidth="0.5"/>
-          <line x1="0" y1="0" x2="1100" y2="0" stroke="#c87060" strokeWidth="0.5"/>
+        <g opacity="0.90">
+          <line x1="0" y1="0" x2="1200" y2="480" stroke="#c87060" strokeWidth="1.0"/>
+          <line x1="0" y1="0" x2="1200" y2="420" stroke="#c87060" strokeWidth="1.0"/>
+          <line x1="0" y1="0" x2="1200" y2="360" stroke="#c87060" strokeWidth="1.0"/>
+          <line x1="0" y1="0" x2="1200" y2="300" stroke="#c87060" strokeWidth="1.0"/>
+          <line x1="0" y1="0" x2="1200" y2="240" stroke="#c87060" strokeWidth="1.0"/>
+          <line x1="0" y1="0" x2="1200" y2="180" stroke="#c87060" strokeWidth="1.0"/>
+          <line x1="0" y1="0" x2="1100" y2="0" stroke="#c87060" strokeWidth="1.0"/>
           <line x1="0" y1="0" x2="900" y2="0" stroke="#c87060" strokeWidth="0.4"/>
         </g>
         {/* Diagonal rays from upper right — cool blue */}
-        <g opacity="0.22">
-          <line x1="1200" y1="0" x2="0" y2="480" stroke="#8090b8" strokeWidth="0.5"/>
-          <line x1="1200" y1="0" x2="0" y2="420" stroke="#8090b8" strokeWidth="0.5"/>
-          <line x1="1200" y1="0" x2="0" y2="360" stroke="#8090b8" strokeWidth="0.5"/>
-          <line x1="1200" y1="0" x2="0" y2="300" stroke="#8090b8" strokeWidth="0.5"/>
-          <line x1="1200" y1="0" x2="0" y2="240" stroke="#8090b8" strokeWidth="0.5"/>
-          <line x1="1200" y1="0" x2="100" y2="0" stroke="#8090b8" strokeWidth="0.4"/>
-          <line x1="1200" y1="0" x2="300" y2="0" stroke="#8090b8" strokeWidth="0.4"/>
+        <g opacity="0.80">
+          <line x1="1200" y1="0" x2="0" y2="480" stroke="#8090b8" strokeWidth="1.0"/>
+          <line x1="1200" y1="0" x2="0" y2="420" stroke="#8090b8" strokeWidth="1.0"/>
+          <line x1="1200" y1="0" x2="0" y2="360" stroke="#8090b8" strokeWidth="1.0"/>
+          <line x1="1200" y1="0" x2="0" y2="300" stroke="#8090b8" strokeWidth="1.0"/>
+          <line x1="1200" y1="0" x2="0" y2="240" stroke="#8090b8" strokeWidth="1.0"/>
+          <line x1="1200" y1="0" x2="100" y2="0" stroke="#8090b8" strokeWidth="0.8"/>
+          <line x1="1200" y1="0" x2="300" y2="0" stroke="#8090b8" strokeWidth="0.8"/>
         </g>
         {/* Denser fan lines — terracotta */}
-        <g opacity="0.15">
-          <line x1="0" y1="0" x2="1200" y2="450" stroke="#b06050" strokeWidth="0.4"/>
-          <line x1="0" y1="0" x2="1200" y2="390" stroke="#b06050" strokeWidth="0.4"/>
-          <line x1="0" y1="0" x2="1200" y2="330" stroke="#b06050" strokeWidth="0.4"/>
-          <line x1="0" y1="0" x2="1200" y2="270" stroke="#b06050" strokeWidth="0.4"/>
-          <line x1="0" y1="0" x2="1200" y2="210" stroke="#b06050" strokeWidth="0.4"/>
-          <line x1="0" y1="0" x2="1200" y2="150" stroke="#b06050" strokeWidth="0.4"/>
+        <g opacity="0.70">
+          <line x1="0" y1="0" x2="1200" y2="450" stroke="#b06050" strokeWidth="0.8"/>
+          <line x1="0" y1="0" x2="1200" y2="390" stroke="#b06050" strokeWidth="0.8"/>
+          <line x1="0" y1="0" x2="1200" y2="330" stroke="#b06050" strokeWidth="0.8"/>
+          <line x1="0" y1="0" x2="1200" y2="270" stroke="#b06050" strokeWidth="0.8"/>
+          <line x1="0" y1="0" x2="1200" y2="210" stroke="#b06050" strokeWidth="0.8"/>
+          <line x1="0" y1="0" x2="1200" y2="150" stroke="#b06050" strokeWidth="0.8"/>
         </g>
         {/* Orthogonal background grid */}
         <g opacity="0.11">
@@ -79,11 +79,11 @@ export default function InsleyGrid({
           <line x1="0" y1="280" x2="1200" y2="280"/>
         </g>
         {/* Terracotta crosshatch band */}
-        <g opacity="0.26">
+        <g opacity="0.85">
           {[310,316,322,328,334,340].map(y => <line key={y} x1="0" y1={y} x2="1200" y2={y} stroke="#c07060" strokeWidth="0.5"/>)}
         </g>
         {/* Stepped bracket forms */}
-        <g opacity="0.22" fill="none" stroke="#c07060" strokeWidth="0.5">
+        <g opacity="0.80" fill="none" stroke="#c07060" strokeWidth="0.5">
           <path d="M80,340 L80,322 L100,322 L100,328 L120,328 L120,322 L140,322 L140,340"/>
           <path d="M200,340 L200,322 L220,322 L220,328 L240,328 L240,322 L260,322 L260,340"/>
           <path d="M320,340 L320,322 L340,322 L340,328 L360,328 L360,322 L380,322 L380,340"/>

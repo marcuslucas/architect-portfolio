@@ -33,7 +33,7 @@ export default function NotFound() {
         <h1
           style={{
             fontFamily: 'var(--font-cormorant)',
-            fontWeight: 300,
+            fontWeight: 'var(--fw-heading)',
             fontStyle: 'italic',
             fontSize: 'clamp(32px, 5vw, 60px)',
             marginBottom: '28px',

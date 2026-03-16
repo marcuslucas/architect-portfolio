@@ -38,10 +38,10 @@ export default function StudioPage() {
                 <span style={{ display: 'inline-block', width: '28px', height: '0.5px', background: 'var(--ink)', opacity: 0.3 }} />
                 <span style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '10px', letterSpacing: '0.28em', textTransform: 'uppercase', opacity: 0.45 }}>The Studio</span>
               </div>
-              <h1 style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 1.0, marginBottom: '36px' }}>
+              <h1 style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 'var(--fw-heading)', fontSize: 'clamp(40px, 6vw, 72px)', lineHeight: 1.0, marginBottom: '36px' }}>
                 Thinking as an architect.<br /><em>Acting as an artist.</em>
               </h1>
-              <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '20px', lineHeight: 1.65, opacity: 0.6, maxWidth: '600px' }}>
+              <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 'var(--fw-body)', fontSize: '20px', lineHeight: 1.65, opacity: 0.6, maxWidth: '600px' }}>
                 Brady Architecture is a Miami-based practice founded in 2011. We design high-end contemporary residences, luxury condominiums, and architectural developments across Florida.
               </p>
             </motion.div>
@@ -52,15 +52,15 @@ export default function StudioPage() {
         <section className="studio-statement" style={{ padding: '80px 48px', borderTop: '0.5px solid rgba(26,25,22,0.08)', borderBottom: '0.5px solid rgba(26,25,22,0.08)' }}>
           <div className="wide-container" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '80px' }}>
             <div>
-              <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '17px', lineHeight: 1.8, opacity: 0.65 }}>
+              <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 'var(--fw-body)', fontSize: '17px', lineHeight: 1.8, opacity: 0.65 }}>
                 Our approach is grounded in a single conviction: that architecture is the art of organizing space to serve the full range of human experience — not merely the functional, but the poetic, the contemplative, the quietly extraordinary.
               </p>
             </div>
             <div>
-              <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '17px', lineHeight: 1.8, opacity: 0.65, marginBottom: '28px' }}>
+              <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 'var(--fw-body)', fontSize: '17px', lineHeight: 1.8, opacity: 0.65, marginBottom: '28px' }}>
                 We work selectively, with a small number of clients each year, to maintain the quality of attention that our projects require. Each commission is a sustained investigation — of site, program, and the particular life the building will frame.
               </p>
-              <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '17px', lineHeight: 1.8, opacity: 0.65 }}>
+              <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 'var(--fw-body)', fontSize: '17px', lineHeight: 1.8, opacity: 0.65 }}>
                 Florida's architecture demands a specific response to its light, its landscape, and its relationship to water. We have dedicated our practice to understanding and working within these conditions.
               </p>
             </div>
@@ -75,9 +75,9 @@ export default function StudioPage() {
               <div key={member.name} style={{ background: 'var(--pale)', padding: '40px 32px', borderRadius: '12px' }}>
                 {/* Avatar placeholder */}
                 <div style={{ width: '56px', height: '56px', background: 'var(--dust)', borderRadius: '50%', marginBottom: '24px', border: '0.5px solid rgba(26,25,22,0.1)' }} />
-                <div style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '20px', color: 'var(--ink)', marginBottom: '4px' }}>{member.name}</div>
+                <div style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 'var(--fw-body)', fontSize: '20px', color: 'var(--ink)', marginBottom: '4px' }}>{member.name}</div>
                 <span style={{ display: 'block', fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', opacity: 0.38, marginBottom: '20px' }}>{member.role}</span>
-                <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '14px', lineHeight: 1.7, opacity: 0.55 }}>{member.bio}</p>
+                <p style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 'var(--fw-body)', fontSize: '14px', lineHeight: 1.7, opacity: 0.55 }}>{member.bio}</p>
               </div>
             ))}
           </div>
@@ -103,8 +103,8 @@ export default function StudioPage() {
                 }}
               >
                 <span style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '12px', letterSpacing: '0.1em', opacity: 0.38 }}>{award.year}</span>
-                <span style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontSize: '18px', color: 'var(--ink)' }}>{award.title}</span>
-                <span style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 300, fontStyle: 'italic', fontSize: '15px', opacity: 0.45 }}>{award.project}</span>
+                <span style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 'var(--fw-body)', fontSize: '18px', color: 'var(--ink)' }}>{award.title}</span>
+                <span style={{ fontFamily: 'var(--font-cormorant)', fontWeight: 'var(--fw-body)', fontStyle: 'italic', fontSize: '15px', opacity: 0.45 }}>{award.project}</span>
               </div>
             ))}
           </div>

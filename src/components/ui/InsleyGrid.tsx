@@ -304,20 +304,20 @@ export default function InsleyGrid({
 
       {/* Colored diagonal rays — Insley's pencil elevation drawings */}
       {variant !== 'dark' && (
-        <g opacity="0.15">
+        <g opacity="0.85">
           {[
-            ['rgba(140,110,180,0.7)', 600, 0, 1400, 440],
-            ['rgba(140,110,180,0.6)', 660, 0, 1400, 420],
-            ['rgba(130,140,200,0.65)', 720, 0, 1400, 400],
-            ['rgba(130,140,200,0.55)', 780, 0, 1400, 380],
-            ['rgba(210,160,140,0.5)', 840, 0, 1400, 360],
+            ['rgba(140,110,180,0.95)', 600, 0, 1400, 440],
+            ['rgba(140,110,180,0.90)', 660, 0, 1400, 420],
+            ['rgba(130,140,200,0.92)', 720, 0, 1400, 400],
+            ['rgba(130,140,200,0.85)', 780, 0, 1400, 380],
+            ['rgba(210,160,140,0.88)', 840, 0, 1400, 360],
           ].map(([stroke, x1, y1, x2, y2], i) => (
             <line
               key={`r${i}`}
               x1={x1 as number} y1={y1 as number}
               x2={x2 as number} y2={y2 as number}
               stroke={stroke as string}
-              strokeWidth="1"
+              strokeWidth="1.5"
             />
           ))}
         </g>
@@ -326,25 +326,25 @@ export default function InsleyGrid({
       {/* Dark variant: pink + blue Insley elevation bands */}
       {variant === 'dark' && (
         <g>
-          {['rgba(210,160,140,0.55)', 'rgba(210,160,140,0.40)', 'rgba(210,160,140,0.38)'].map(
+          {['rgba(210,160,140,0.92)', 'rgba(210,160,140,0.82)', 'rgba(210,160,140,0.80)'].map(
             (stroke, i) => (
               <line
                 key={`p${i}`}
                 x1="0" y1={100 + i * 20}
                 x2="1400" y2={300 + i * 20}
                 stroke={stroke}
-                strokeWidth={i === 0 ? '1.2' : '0.8'}
+                strokeWidth={i === 0 ? '1.8' : '1.2'}
               />
             )
           )}
-          {['rgba(140,165,210,0.50)', 'rgba(140,165,210,0.36)', 'rgba(140,165,210,0.30)'].map(
+          {['rgba(140,165,210,0.88)', 'rgba(140,165,210,0.78)', 'rgba(140,165,210,0.75)'].map(
             (stroke, i) => (
               <line
                 key={`b${i}`}
                 x1="0" y1={400 + i * 20}
                 x2="1400" y2={200 + i * 20}
                 stroke={stroke}
-                strokeWidth={i === 0 ? '1.2' : '0.8'}
+                strokeWidth={i === 0 ? '1.8' : '1.2'}
               />
             )
           )}

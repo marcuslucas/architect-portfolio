@@ -138,7 +138,7 @@ function ProjectCard({ project }: { project: Project }) {
         <div
           style={{
             fontFamily: 'var(--font-cormorant)',
-            fontWeight: 300,
+            fontWeight: 'var(--fw-body)',
             fontSize: '19px',
             color: 'var(--ink)',
             lineHeight: 1.2,

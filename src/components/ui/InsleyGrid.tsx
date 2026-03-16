@@ -154,63 +154,64 @@ export default function InsleyGrid({
   if (variant === 'passage') {
     return (
       <svg style={svgStyle} viewBox="0 0 1200 480" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="1200" height="480" fill="rgba(192,80,64,0.06)"/>
         {/* Fine graph paper micro grid */}
-        <g opacity="0.09" stroke="#1a1916" strokeWidth="0.3">
+        <g opacity="0.22" stroke="#1a1916" strokeWidth="0.3">
           {Array.from({length:47}, (_,i) => (i+1)*10).map(y => <line key={`gy${y}`} x1="0" y1={y} x2="1200" y2={y}/>)}
           {Array.from({length:119}, (_,i) => (i+1)*10).map(x => <line key={`gx${x}`} x1={x} y1="0" x2={x} y2="480"/>)}
         </g>
         {/* Outer border */}
-        <rect x="0" y="0" width="1200" height="480" fill="none" stroke="#1a1916" strokeWidth="0.5" opacity="0.35"/>
+        <rect x="0" y="0" width="1200" height="480" fill="none" stroke="#1a1916" strokeWidth="0.5" opacity="0.75"/>
         {/* Concentric receding frames */}
         <g fill="none" strokeWidth="0.5">
-          <rect x="30" y="20" width="1140" height="440" fill="none" stroke="#1a1916" opacity="0.30"/>
-          <rect x="70" y="44" width="1060" height="392" fill="none" stroke="#1a1916" opacity="0.28"/>
-          <rect x="115" y="70" width="970" height="340" fill="none" stroke="#1a1916" opacity="0.26"/>
-          <rect x="165" y="98" width="870" height="284" fill="none" stroke="#c05040" opacity="0.36"/>
-          <rect x="220" y="128" width="760" height="224" fill="none" stroke="#1a1916" opacity="0.24"/>
-          <rect x="278" y="158" width="644" height="164" fill="none" stroke="#5070a0" opacity="0.32"/>
-          <rect x="340" y="186" width="520" height="108" fill="none" stroke="#1a1916" opacity="0.22"/>
-          <rect x="400" y="206" width="400" height="68" fill="none" stroke="#c05040" opacity="0.32"/>
-          <rect x="460" y="220" width="280" height="40" fill="none" stroke="#1a1916" opacity="0.20"/>
-          <rect x="510" y="228" width="180" height="24" fill="none" stroke="#5070a0" opacity="0.28"/>
-          <rect x="545" y="233" width="110" height="14" fill="none" stroke="#1a1916" opacity="0.18"/>
-          <rect x="568" y="237" width="64" height="6" fill="none" stroke="#c05040" opacity="0.36"/>
-          <rect x="583" y="239" width="34" height="2" fill="none" stroke="#1a1916" opacity="0.28"/>
+          <rect x="30" y="20" width="1140" height="440" fill="none" stroke="#1a1916" opacity="0.65"/>
+          <rect x="70" y="44" width="1060" height="392" fill="none" stroke="#1a1916" opacity="0.62"/>
+          <rect x="115" y="70" width="970" height="340" fill="none" stroke="#1a1916" opacity="0.58"/>
+          <rect x="165" y="98" width="870" height="284" fill="none" stroke="#c05040" opacity="0.90"/>
+          <rect x="220" y="128" width="760" height="224" fill="none" stroke="#1a1916" opacity="0.55"/>
+          <rect x="278" y="158" width="644" height="164" fill="none" stroke="#5070a0" opacity="0.80"/>
+          <rect x="340" y="186" width="520" height="108" fill="none" stroke="#1a1916" opacity="0.52"/>
+          <rect x="400" y="206" width="400" height="68" fill="none" stroke="#c05040" opacity="0.85"/>
+          <rect x="460" y="220" width="280" height="40" fill="none" stroke="#1a1916" opacity="0.50"/>
+          <rect x="510" y="228" width="180" height="24" fill="none" stroke="#5070a0" opacity="0.75"/>
+          <rect x="545" y="233" width="110" height="14" fill="none" stroke="#1a1916" opacity="0.48"/>
+          <rect x="568" y="237" width="64" height="6" fill="none" stroke="#c05040" opacity="0.90"/>
+          <rect x="583" y="239" width="34" height="2" fill="none" stroke="#1a1916" opacity="0.60"/>
         </g>
         {/* Perspective lines corner to vanishing point */}
-        <g stroke="#1a1916" strokeWidth="0.5" opacity="0.18">
+        <g stroke="#1a1916" strokeWidth="0.5" opacity="0.65">
           <line x1="0" y1="0" x2="600" y2="240"/>
           <line x1="1200" y1="0" x2="600" y2="240"/>
           <line x1="0" y1="480" x2="600" y2="240"/>
           <line x1="1200" y1="480" x2="600" y2="240"/>
         </g>
         {/* Red accent diagonals */}
-        <g stroke="#c05040" strokeWidth="0.5" opacity="0.26">
+        <g stroke="#c05040" strokeWidth="1.0" opacity="0.80">
           <line x1="0" y1="0" x2="600" y2="240"/>
           <line x1="1200" y1="480" x2="600" y2="240"/>
         </g>
         {/* Blue accent diagonals */}
-        <g stroke="#5070a0" strokeWidth="0.5" opacity="0.22">
+        <g stroke="#5070a0" strokeWidth="1.0" opacity="0.72">
           <line x1="1200" y1="0" x2="600" y2="240"/>
           <line x1="0" y1="480" x2="600" y2="240"/>
         </g>
         {/* Red structural lines */}
-        <g stroke="#c05040" strokeWidth="0.5" opacity="0.30">
+        <g stroke="#c05040" strokeWidth="1.0" opacity="0.82">
           <line x1="0" y1="120" x2="600" y2="240"/>
           <line x1="1200" y1="120" x2="600" y2="240"/>
           <line x1="0" y1="360" x2="600" y2="240"/>
           <line x1="1200" y1="360" x2="600" y2="240"/>
         </g>
         {/* Blue structural lines */}
-        <g stroke="#5070a0" strokeWidth="0.5" opacity="0.22">
+        <g stroke="#5070a0" strokeWidth="1.0" opacity="0.72">
           <line x1="300" y1="0" x2="600" y2="240"/>
           <line x1="900" y1="0" x2="600" y2="240"/>
           <line x1="300" y1="480" x2="600" y2="240"/>
           <line x1="900" y1="480" x2="600" y2="240"/>
         </g>
         {/* Vanishing point mark */}
-        <rect x="597" y="237" width="6" height="6" fill="#1a1916" opacity="0.65"/>
-        <line x1="600" y1="243" x2="600" y2="258" stroke="#c05040" strokeWidth="0.5" opacity="0.75"/>
+        <rect x="597" y="237" width="6" height="6" fill="#1a1916" opacity="0.90"/>
+        <line x1="600" y1="243" x2="600" y2="258" stroke="#c05040" strokeWidth="0.5" opacity="0.95"/>
       </svg>
     )
   }

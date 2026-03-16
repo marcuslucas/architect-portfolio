@@ -197,7 +197,7 @@ export default function Navigation() {
                     href={link.href}
                     style={{
                       fontFamily: 'var(--font-cormorant)',
-                      fontWeight: 300,
+                      fontWeight: 'var(--fw-heading)',
                       fontSize: '32px',
                       color: 'var(--ink)',
                       textDecoration: 'none',

@@ -102,25 +102,25 @@ export default function InsleyGrid({
     return (
       <svg style={svgStyle} viewBox="0 0 1200 480" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
         {/* Primary isometric lines going right-down */}
-        <g opacity="0.14" stroke="#1a1916" strokeWidth="0.4">
+        <g opacity="0.65" stroke="#c07060" strokeWidth="0.8">
           {[-200,-120,-40,40,120,200,280,360,440,520,600,680,760,840,920,1000,1080,1160].map(x => (
             <line key={`rd${x}`} x1={x} y1="0" x2={x+1200} y2="480"/>
           ))}
         </g>
         {/* Isometric lines going left-down */}
-        <g opacity="0.14" stroke="#1a1916" strokeWidth="0.4">
+        <g opacity="0.65" stroke="#5070a0" strokeWidth="0.8">
           {[200,280,360,440,520,600,680,760,840,920,1000,1080,1160,1240,1320,1400].map(x => (
             <line key={`ld${x}`} x1={x} y1="0" x2={x-1200} y2="480"/>
           ))}
         </g>
         {/* Vertical lines */}
-        <g opacity="0.12" stroke="#1a1916" strokeWidth="0.3">
+        <g opacity="0.50" stroke="#1a1916" strokeWidth="0.5">
           {[80,160,240,320,400,480,560,640,720,800,880,960,1040,1120].map(x => (
             <line key={`v${x}`} x1={x} y1="0" x2={x} y2="480"/>
           ))}
         </g>
         {/* Crosshatch blocks */}
-        <g opacity="0.16" fill="none" stroke="#1a1916" strokeWidth="0.3">
+        <g opacity="0.72" fill="none" stroke="#c07060" strokeWidth="0.6">
           {[80,88,96,104,112,120,128,136,144,152,160].map(y => <line key={`b1${y}`} x1="80" y1={y} x2="160" y2={y}/>)}
           {[120,128,136,144,152,160,168,176,184].map(y => <line key={`b2${y}`} x1="240" y1={y} x2="320" y2={y}/>)}
           {[80,88,96,104,112,120,128,136,144,152].map(y => <line key={`b3${y}`} x1="480" y1={y} x2="560" y2={y}/>)}
@@ -130,7 +130,7 @@ export default function InsleyGrid({
           {[320,328,336,344,352,360,368].map(y => <line key={`b7${y}`} x1="400" y1={y} x2="480" y2={y}/>)}
         </g>
         {/* Ellipses */}
-        <g opacity="0.16" fill="none" stroke="#1a1916" strokeWidth="0.4">
+        <g opacity="0.70" fill="none" stroke="#5070a0" strokeWidth="0.8">
           <ellipse cx="200" cy="200" rx="18" ry="9" transform="rotate(-30 200 200)"/>
           <ellipse cx="440" cy="140" rx="16" ry="8" transform="rotate(-25 440 140)"/>
           <ellipse cx="680" cy="300" rx="20" ry="10" transform="rotate(-35 680 300)"/>
@@ -140,7 +140,7 @@ export default function InsleyGrid({
           <ellipse cx="760" cy="200" rx="17" ry="8" transform="rotate(-26 760 200)"/>
         </g>
         {/* Vertical spires */}
-        <g opacity="0.18" stroke="#1a1916" strokeWidth="0.4">
+        <g opacity="0.75" stroke="#1a1916" strokeWidth="0.7">
           <line x1="200" y1="0" x2="200" y2="480"/><line x1="201" y1="0" x2="201" y2="480"/>
           <line x1="440" y1="0" x2="440" y2="480"/><line x1="441" y1="0" x2="441" y2="480"/>
           <line x1="680" y1="0" x2="680" y2="480"/><line x1="681" y1="0" x2="681" y2="480"/>

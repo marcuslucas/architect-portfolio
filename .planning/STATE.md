@@ -3,9 +3,9 @@ gsd_state_version: 1.0
 milestone: v1.0
 milestone_name: milestone
 status: planning
-stopped_at: Quick task 3 complete — InsleyGrid hero opacity normalized, Enquire/Enquiry spelling corrected
-last_updated: "2026-03-14T14:34:24Z"
-last_activity: 2026-03-14 — Roadmap created
+stopped_at: Quick task 260315-pjg — InsleyGrid contrast + wide-screen layout complete
+last_updated: "2026-03-15T22:35:00Z"
+last_activity: 2026-03-15 — Completed quick task 260315-pjg: Add contrast and size to the new backgrounds on each page, On larger screens, 1080p and up, Make text fit the screen better
 progress:
   total_phases: 2
   completed_phases: 1
@@ -28,7 +28,7 @@ See: .planning/PROJECT.md (updated 2026-03-14)
 Phase: 1 of 2 (Mobile Overflow)
 Plan: 0 of ? in current phase
 Status: Ready to plan
-Last activity: 2026-03-14 - Completed quick task 3: Insley Background design on Journal, Philosophy, and Studio pages are all placed differenty. Make them the same placement on each page. Change any instance of Enquire to Inquire
+Last activity: 2026-03-14 — Roadmap created
 
 Progress: [█████░░░░░] 50%
 
@@ -78,10 +78,11 @@ None yet.
 | # | Name | Commits | Completed |
 |---|------|---------|-----------|
 | 1 | How We Work and Team section mobile collapse | 2d4bc3f, f949db2 | 2026-03-14 |
-| 3 | Insley background design on journal/philosophy + spelling fix | 242bc9f, b040d7a | 2026-03-14 |
+| 2 | Change VS Code font to Calibri | cbc36d1 | 2026-03-15 |
+| 3 | InsleyGrid contrast + wide-screen max-width layout | f7f2d58, d14c646 | 2026-03-15 |
 
 ## Session Continuity
 
-Last session: 2026-03-14T14:34:24Z
-Stopped at: Quick task 3 complete — InsleyGrid hero opacity normalized, Enquire/Enquiry spelling corrected
+Last session: 2026-03-15T22:35:00Z
+Stopped at: Quick task 260315-pjg complete — ready for next task
 Resume file: None

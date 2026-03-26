@@ -68,7 +68,7 @@ export default function PhilosophyBand() {
         <blockquote
           style={{
             fontFamily: 'var(--font-cormorant)',
-            fontWeight: 300,
+            fontWeight: 'var(--fw-heading)',
             fontStyle: 'italic',
             fontSize: 'clamp(28px, 4vw, 52px)',
             lineHeight: 1.3,

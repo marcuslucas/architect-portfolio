@@ -46,7 +46,7 @@ export default function ProjectsPage() {
             }}
             style={{
               fontFamily: 'var(--font-cormorant)',
-              fontWeight: 300,
+              fontWeight: 'var(--fw-heading)',
               fontSize: 'clamp(48px, 7vw, 96px)',
               lineHeight: 1.0,
               color: 'var(--ink)',

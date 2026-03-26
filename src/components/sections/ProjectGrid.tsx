@@ -95,7 +95,7 @@ function ProjectCard({ project, height, cardIndex, inView, reducedMotion }: Proj
           <span
             style={{
               fontFamily: 'var(--font-cormorant)',
-              fontWeight: 300,
+              fontWeight: 'var(--fw-heading)',
               fontStyle: 'italic',
               fontSize: '28px',
               color: 'var(--vellum)',
@@ -161,7 +161,7 @@ export default function ProjectGrid({ projects, showViewAll }: ProjectGridProps)
           textAlign: 'center',
           padding: '80px 0',
           fontFamily: 'var(--font-cormorant)',
-          fontWeight: 300,
+          fontWeight: 'var(--fw-body)',
           fontSize: '14px',
           color: 'var(--ink)',
           opacity: 0.4,

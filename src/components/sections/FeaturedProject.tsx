@@ -81,7 +81,7 @@ export default function FeaturedProject() {
             <h2
               style={{
                 fontFamily: 'var(--font-cormorant)',
-                fontWeight: 300,
+                fontWeight: 'var(--fw-heading)',
                 fontSize: 'clamp(28px, 3vw, 40px)',
                 lineHeight: 1.05,
                 color: 'var(--ink)',
@@ -100,7 +100,7 @@ export default function FeaturedProject() {
             <span
               style={{
                 fontFamily: 'var(--font-cormorant)',
-                fontWeight: 300,
+                fontWeight: 'var(--fw-body)',
                 fontSize: '13px',
                 letterSpacing: '0.08em',
                 color: 'var(--ink)',
@@ -115,7 +115,7 @@ export default function FeaturedProject() {
             <p
               style={{
                 fontFamily: 'var(--font-cormorant)',
-                fontWeight: 300,
+                fontWeight: 'var(--fw-body)',
                 fontSize: '16px',
                 lineHeight: 1.7,
                 color: 'var(--ink)',
@@ -162,7 +162,7 @@ export default function FeaturedProject() {
                     style={{
                       display: 'block',
                       fontFamily: 'var(--font-cormorant)',
-                      fontWeight: 300,
+                      fontWeight: 'var(--fw-body)',
                       fontSize: '22px',
                       color: 'var(--ink)',
                       lineHeight: 1,

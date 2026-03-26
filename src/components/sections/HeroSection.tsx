@@ -59,7 +59,7 @@ export default function HeroSection() {
           style={{
             display: 'block',
             fontFamily: 'var(--font-cormorant)',
-            fontWeight: 300,
+            fontWeight: 'var(--fw-heading)',
             fontSize: 'clamp(72px, 10vw, 160px)',
             lineHeight: 0.9,
             letterSpacing: '-0.02em',
@@ -76,7 +76,7 @@ export default function HeroSection() {
           style={{
             display: 'block',
             fontFamily: 'var(--font-cormorant)',
-            fontWeight: 300,
+            fontWeight: 'var(--fw-heading)',
             fontSize: 'clamp(72px, 10vw, 160px)',
             lineHeight: 0.9,
             letterSpacing: '-0.02em',

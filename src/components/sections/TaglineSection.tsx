@@ -40,7 +40,7 @@ export default function TaglineSection() {
           <div
             style={{
               fontFamily: 'var(--font-cormorant)',
-              fontWeight: 300,
+              fontWeight: 'var(--fw-heading)',
               fontStyle: 'italic',
               fontSize: 'clamp(36px, 5vw, 72px)',
               lineHeight: 1.1,

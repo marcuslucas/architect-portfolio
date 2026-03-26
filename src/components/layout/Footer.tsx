@@ -38,7 +38,7 @@ export default function Footer() {
           <div
             style={{
               fontFamily: 'var(--font-cormorant)',
-              fontWeight: 300,
+              fontWeight: 'var(--fw-body)',
               fontSize: '18px',
               letterSpacing: '0.12em',
               textTransform: 'uppercase',
@@ -92,7 +92,7 @@ export default function Footer() {
             className="footer-link"
             style={{
               fontFamily: 'var(--font-cormorant)',
-              fontWeight: 300,
+              fontWeight: 'var(--fw-body)',
               fontSize: '13px',
               color: 'var(--ink)',
               textDecoration: 'none',
@@ -105,7 +105,7 @@ export default function Footer() {
           <span
             style={{
               fontFamily: 'var(--font-cormorant)',
-              fontWeight: 300,
+              fontWeight: 'var(--fw-body)',
               fontSize: '13px',
               color: 'var(--ink)',
               opacity: 0.5,

@@ -40,7 +40,7 @@ export default function JournalPage() {
   return (
     <>
       <Navigation />
-      <main>
+      <main id="main-content">
         <section className="page-hero" style={{ position: 'relative', padding: '180px 48px 80px', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0 }}>
             <InsleyGrid variant="opaque-city" opacity={0.4} />

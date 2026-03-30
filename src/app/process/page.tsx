@@ -11,7 +11,7 @@ export default function ProcessPage() {
   return (
     <>
       <Navigation />
-      <main>
+      <main id="main-content">
         {/* Header */}
         <section className="page-hero" style={{ position: 'relative', padding: '180px 48px 100px', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0 }}>
@@ -62,7 +62,7 @@ export default function ProcessPage() {
               Every project starts with a question.
             </h2>
             <Link href="/contact" className="btn-primary">
-              Enquire About Your Project
+              Inquire About Your Project
             </Link>
           </div>
         </section>

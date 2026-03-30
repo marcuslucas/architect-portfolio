@@ -34,7 +34,7 @@ export default function ProjectsPage() {
   return (
     <>
       <Navigation />
-      <main>
+      <main id="main-content">
         {/* Page header */}
         <section style={{ padding: '180px 56px 64px' }} className="projects-header">
           <motion.h1

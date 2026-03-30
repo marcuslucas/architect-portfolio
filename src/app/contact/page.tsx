@@ -42,7 +42,7 @@ export default function ContactPage() {
   return (
     <>
       <Navigation />
-      <main>
+      <main id="main-content">
         {/* Header */}
         <section className="page-hero" style={{ position: 'relative', padding: '180px 48px 80px', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0 }}>
@@ -102,23 +102,23 @@ export default function ContactPage() {
               <form onSubmit={handleSubmit}>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0 40px' }}>
                   <div style={{ marginBottom: '40px' }}>
-                    <label style={labelStyle}>First Name</label>
-                    <input style={inputStyle} type="text" required placeholder="Your name" />
+                    <label htmlFor="contact-first-name" style={labelStyle}>First Name</label>
+                    <input id="contact-first-name" style={inputStyle} type="text" required placeholder="Your name" />
                   </div>
                   <div style={{ marginBottom: '40px' }}>
-                    <label style={labelStyle}>Last Name</label>
-                    <input style={inputStyle} type="text" required placeholder="Your surname" />
+                    <label htmlFor="contact-last-name" style={labelStyle}>Last Name</label>
+                    <input id="contact-last-name" style={inputStyle} type="text" required placeholder="Your surname" />
                   </div>
                 </div>
 
                 <div style={{ marginBottom: '40px' }}>
-                  <label style={labelStyle}>Email</label>
-                  <input style={inputStyle} type="email" required placeholder="your@email.com" />
+                  <label htmlFor="contact-email" style={labelStyle}>Email</label>
+                  <input id="contact-email" style={inputStyle} type="email" required placeholder="your@email.com" />
                 </div>
 
                 <div style={{ marginBottom: '40px' }}>
-                  <label style={labelStyle}>Project Type</label>
-                  <select style={{ ...inputStyle, cursor: 'pointer' }}>
+                  <label htmlFor="contact-project-type" style={labelStyle}>Project Type</label>
+                  <select id="contact-project-type" style={{ ...inputStyle, cursor: 'pointer' }}>
                     <option>Private Residence</option>
                     <option>Condominium</option>
                     <option>Multi-unit Development</option>
@@ -128,13 +128,14 @@ export default function ContactPage() {
                 </div>
 
                 <div style={{ marginBottom: '40px' }}>
-                  <label style={labelStyle}>Location</label>
-                  <input style={inputStyle} type="text" placeholder="City, Florida" />
+                  <label htmlFor="contact-location" style={labelStyle}>Location</label>
+                  <input id="contact-location" style={inputStyle} type="text" placeholder="City, Florida" />
                 </div>
 
                 <div style={{ marginBottom: '48px' }}>
-                  <label style={labelStyle}>Tell us about your project</label>
+                  <label htmlFor="contact-message" style={labelStyle}>Tell us about your project</label>
                   <textarea
+                    id="contact-message"
                     style={{ ...inputStyle, resize: 'none', minHeight: '120px', lineHeight: 1.65 }}
                     rows={5}
                     placeholder="Describe your vision, timeline, and budget range..."
@@ -142,7 +143,7 @@ export default function ContactPage() {
                 </div>
 
                 <button type="submit" className="btn-primary" style={{ cursor: 'pointer' }}>
-                  Send Enquiry
+                  Send Inquiry
                 </button>
               </form>
             )}

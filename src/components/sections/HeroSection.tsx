@@ -52,39 +52,41 @@ export default function HeroSection() {
         }}
         className="hero-text"
       >
-        <motion.span
-          initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reducedMotion ? 0 : 0.8, ease }}
-          style={{
-            display: 'block',
-            fontFamily: 'var(--font-cormorant)',
-            fontWeight: 'var(--fw-heading)',
-            fontSize: 'clamp(72px, 10vw, 160px)',
-            lineHeight: 0.9,
-            letterSpacing: '-0.02em',
-            color: 'var(--vellum)',
-          }}
-        >
-          Dustin Brady
-        </motion.span>
+        <h1 style={{ margin: 0 }}>
+          <motion.span
+            initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: reducedMotion ? 0 : 0.8, ease }}
+            style={{
+              display: 'block',
+              fontFamily: 'var(--font-cormorant)',
+              fontWeight: 'var(--fw-heading)',
+              fontSize: 'clamp(72px, 10vw, 160px)',
+              lineHeight: 0.9,
+              letterSpacing: '-0.02em',
+              color: 'var(--vellum)',
+            }}
+          >
+            Dustin Brady
+          </motion.span>
 
-        <motion.span
-          initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: reducedMotion ? 0 : 0.8, delay: reducedMotion ? 0 : 0.1, ease }}
-          style={{
-            display: 'block',
-            fontFamily: 'var(--font-cormorant)',
-            fontWeight: 'var(--fw-heading)',
-            fontSize: 'clamp(72px, 10vw, 160px)',
-            lineHeight: 0.9,
-            letterSpacing: '-0.02em',
-            color: 'var(--vellum)',
-          }}
-        >
-          Architecture
-        </motion.span>
+          <motion.span
+            initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: reducedMotion ? 0 : 0.8, delay: reducedMotion ? 0 : 0.1, ease }}
+            style={{
+              display: 'block',
+              fontFamily: 'var(--font-cormorant)',
+              fontWeight: 'var(--fw-heading)',
+              fontSize: 'clamp(72px, 10vw, 160px)',
+              lineHeight: 0.9,
+              letterSpacing: '-0.02em',
+              color: 'var(--vellum)',
+            }}
+          >
+            Architecture
+          </motion.span>
+        </h1>
 
         <motion.span
           initial={reducedMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}

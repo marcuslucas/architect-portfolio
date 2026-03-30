@@ -25,7 +25,7 @@ export default function StudioPage() {
   return (
     <>
       <Navigation />
-      <main>
+      <main id="main-content">
         {/* Header */}
         <section className="page-hero" style={{ position: 'relative', padding: '180px 48px 100px', overflow: 'hidden', minHeight: '520px' }}>
           <div style={{ position: 'absolute', inset: 0 }}>

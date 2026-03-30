@@ -92,8 +92,9 @@ function ProjectCard({ project, height, cardIndex, inView, reducedMotion }: Proj
             padding: '24px',
           }}
         >
-          <span
+          <h3
             style={{
+              margin: 0,
               fontFamily: 'var(--font-cormorant)',
               fontWeight: 'var(--fw-heading)',
               fontStyle: 'italic',
@@ -104,7 +105,7 @@ function ProjectCard({ project, height, cardIndex, inView, reducedMotion }: Proj
             }}
           >
             {project.title}
-          </span>
+          </h3>
           <span
             style={{
               fontFamily: 'var(--font-cormorant)',

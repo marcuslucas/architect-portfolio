@@ -7,6 +7,7 @@ export default function NotFound() {
     <>
       <Navigation />
       <main
+        id="main-content"
         style={{
           minHeight: '80vh',
           display: 'flex',

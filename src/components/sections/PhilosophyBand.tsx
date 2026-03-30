@@ -45,11 +45,12 @@ export default function PhilosophyBand() {
         style={{ position: 'relative', zIndex: 2 }}
       >
         {/* Label */}
-        <div
+        <h2
           style={{
             display: 'flex',
             alignItems: 'center',
             gap: '16px',
+            margin: 0,
             marginBottom: '40px',
             fontFamily: 'var(--font-cormorant)',
             fontWeight: 300,
@@ -62,7 +63,7 @@ export default function PhilosophyBand() {
         >
           <span>——</span>
           <span>Philosophy</span>
-        </div>
+        </h2>
 
         {/* Quote */}
         <blockquote

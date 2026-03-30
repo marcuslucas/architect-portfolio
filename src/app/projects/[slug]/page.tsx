@@ -21,7 +21,7 @@ export default function ProjectDetailPage({
   return (
     <>
       <Navigation />
-      <main>
+      <main id="main-content">
         {/* Hero */}
         <section
           style={{

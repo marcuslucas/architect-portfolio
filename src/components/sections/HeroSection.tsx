@@ -28,6 +28,7 @@ export default function HeroSection() {
         src="/images/projects/house-01/01.JPG"
         alt="Dustin Brady Architecture"
         fill
+        sizes="100vw"
         style={{ objectFit: 'cover', objectPosition: 'center' }}
         priority
       />

@@ -51,7 +51,7 @@ function ProjectCard({ project, height, cardIndex, inView, reducedMotion }: Proj
       }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      style={{ position: 'relative', height, overflow: 'hidden', cursor: 'pointer' }}
+      style={{ position: 'relative', cursor: 'pointer' }}
       className="project-card"
     >
       <Link
@@ -65,42 +65,95 @@ function ProjectCard({ project, height, cardIndex, inView, reducedMotion }: Proj
             }
           }
         }}
-        style={{ display: 'block', width: '100%', height: '100%', position: 'relative' }}
+        style={{ display: 'block' }}
       >
-        <Image
-          src={project.coverImage}
-          alt={project.title}
-          fill
-          style={{ objectFit: 'cover' }}
-          sizes="(max-width: 768px) 100vw, 55vw"
-        />
-
-        {/* Hover overlay */}
-        <motion.div
-          animate={{ opacity: hovered || tapped ? 1 : 0 }}
-          transition={{ duration: 0.3, ease: 'easeInOut' }}
-          style={{
-            position: 'absolute',
-            inset: 0,
-            background: 'rgba(26,25,22,0.72)',
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            gap: '12px',
-            pointerEvents: 'none',
-            padding: '24px',
-          }}
+        {/* Image area */}
+        <div
+          style={{ position: 'relative', height, overflow: 'hidden' }}
+          className="project-card-image"
         >
+          <Image
+            src={project.coverImage}
+            alt={project.title}
+            fill
+            style={{ objectFit: 'cover' }}
+            sizes="(max-width: 768px) 100vw, 55vw"
+          />
+
+          {/* Hover overlay */}
+          <motion.div
+            animate={{ opacity: hovered || tapped ? 1 : 0 }}
+            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            style={{
+              position: 'absolute',
+              inset: 0,
+              background: 'rgba(26,25,22,0.72)',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '12px',
+              pointerEvents: 'none',
+              padding: '24px',
+            }}
+          >
+            <span
+              aria-hidden="true"
+              style={{
+                fontFamily: 'var(--font-cormorant)',
+                fontWeight: 'var(--fw-heading)',
+                fontStyle: 'italic',
+                fontSize: '28px',
+                color: 'var(--vellum)',
+                textAlign: 'center',
+                lineHeight: 1.2,
+              }}
+            >
+              {project.title}
+            </span>
+            <span
+              style={{
+                fontFamily: 'var(--font-cormorant)',
+                fontWeight: 300,
+                fontSize: '10px',
+                letterSpacing: '0.22em',
+                textTransform: 'uppercase',
+                color: 'var(--vellum)',
+                opacity: 0.7,
+                textAlign: 'center',
+              }}
+            >
+              {eyebrow}
+            </span>
+            <span
+              className="btn-outline"
+              style={{
+                color: 'var(--vellum)',
+                opacity: 1,
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '12px',
+                marginTop: '4px',
+              }}
+            >
+              <span
+                className="arrow-line"
+                style={{ background: 'var(--vellum)' }}
+              />
+              <span>View Project</span>
+            </span>
+          </motion.div>
+        </div>
+
+        {/* Always-visible label */}
+        <div style={{ padding: '12px 0', background: 'var(--warm)' }}>
           <h3
             style={{
               margin: 0,
               fontFamily: 'var(--font-cormorant)',
-              fontWeight: 'var(--fw-heading)',
-              fontStyle: 'italic',
-              fontSize: '28px',
-              color: 'var(--vellum)',
-              textAlign: 'center',
+              fontWeight: 'var(--fw-body)',
+              fontSize: '15px',
+              color: 'var(--ink)',
               lineHeight: 1.2,
             }}
           >
@@ -108,36 +161,20 @@ function ProjectCard({ project, height, cardIndex, inView, reducedMotion }: Proj
           </h3>
           <span
             style={{
+              display: 'block',
               fontFamily: 'var(--font-cormorant)',
               fontWeight: 300,
               fontSize: '10px',
-              letterSpacing: '0.22em',
+              letterSpacing: '0.18em',
               textTransform: 'uppercase',
-              color: 'var(--vellum)',
-              opacity: 0.7,
-              textAlign: 'center',
-            }}
-          >
-            {eyebrow}
-          </span>
-          <span
-            className="btn-outline"
-            style={{
-              color: 'var(--vellum)',
-              opacity: 1,
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '12px',
+              color: 'var(--ink)',
+              opacity: 0.45,
               marginTop: '4px',
             }}
           >
-            <span
-              className="arrow-line"
-              style={{ background: 'var(--vellum)' }}
-            />
-            <span>View Project</span>
+            {project.location} · {project.year}
           </span>
-        </motion.div>
+        </div>
       </Link>
     </motion.div>
   )
@@ -224,7 +261,7 @@ export default function ProjectGrid({ projects, showViewAll }: ProjectGridProps)
       <style>{`
         @media (max-width: 768px) {
           .project-grid-row { grid-template-columns: 1fr !important; }
-          .project-card { height: 56vw !important; }
+          .project-card-image { height: 56vw !important; }
         }
       `}</style>
     </div>
